@@ -1,7 +1,7 @@
 ---
 import { url } from '../lib/urls';
 import Base from '../layouts/Base.astro';
-import { SITE, UPDATES } from '../data/site';
+import { SITE, UPDATES_NEWEST_FIRST } from '../data/site';
 
 const stats = [
   { value: '1978', label: 'Founded on 2 May — serving Jalandhar for over four decades' },
@@ -31,7 +31,7 @@ const pillars = [
   },
 ];
 
-const latest = UPDATES[UPDATES.length - 1]!;
+const latest = UPDATES_NEWEST_FIRST[0]!;
 ---
 
 <Base title={SITE.name} description={SITE.description}>

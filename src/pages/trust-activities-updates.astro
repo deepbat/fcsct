@@ -2,9 +2,9 @@
 import { url } from '../lib/urls';
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
-import { UPDATES } from '../data/site';
+import { UPDATES_NEWEST_FIRST } from '../data/site';
 
-const [latest, ...rest] = UPDATES;
+const updates = UPDATES_NEWEST_FIRST;
 ---
 
 <Base
@@ -50,20 +50,17 @@ const [latest, ...rest] = UPDATES;
       </div>
 
       <div class="timeline">
-        {latest && (
-          <article class="update">
-            <span class="update__period">{latest.period}</span>
-            <h3>{latest.title}</h3>
-            {latest.paragraphs.map((p) => <p>{p}</p>)}
-          </article>
-        )}
-        {rest.map((u) => (
-          <article class="update">
-            <span class="update__period">{u.period}</span>
-            <h3>{u.title}</h3>
-            {u.paragraphs.map((p) => <p>{p}</p>)}
-          </article>
-        ))}
+        {
+          updates.map((u) => (
+            <article class="update">
+              <span class="update__period">{u.period}</span>
+              <h3>{u.title}</h3>
+              {u.paragraphs.map((p) => (
+                <p>{p}</p>
+              ))}
+            </article>
+          ))
+        }
       </div>
 
       <div class="callout mt-6">
@@ -73,7 +70,7 @@ const [latest, ...rest] = UPDATES;
           </svg>
         </span>
         <div>
-          <h3>Our commitment — financial and otherwise</h3>
+          <h3>Our promise to donors</h3>
           <p>
             We endeavour to ensure that assistance reaches deserving individuals in a timely,
             efficient and transparent manner, while continuing our efforts to make a meaningful

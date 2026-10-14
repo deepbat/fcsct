@@ -2,9 +2,10 @@
 import { url } from '../lib/urls';
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
-import { MAGAZINE_ISSUES } from '../data/site';
+import { MAGAZINE_BY_YEAR, MAGAZINE_ISSUES } from '../data/site';
 
-const total = MAGAZINE_ISSUES.reduce((sum, y) => sum + y.issues.length, 0);
+const total = MAGAZINE_ISSUES.length;
+const latestYear = MAGAZINE_BY_YEAR[0]!.year;
 ---
 
 <Base
@@ -25,11 +26,11 @@ const total = MAGAZINE_ISSUES.reduce((sum, y) => sum + y.issues.length, 0);
           <span class="stat__label">Issues in the archive</span>
         </li>
         <li class="stat">
-          <span class="stat__value">7</span>
-          <span class="stat__label">Years covered, 2020 – 2026</span>
+          <span class="stat__value">{MAGAZINE_BY_YEAR.length}</span>
+          <span class="stat__label">Years covered, 2020 – {latestYear}</span>
         </li>
         <li class="stat">
-          <span class="stat__value">4</span>
+          <span class="stat__value">{Math.round(total / MAGAZINE_BY_YEAR.length)}</span>
           <span class="stat__label">Issues per year, published quarterly</span>
         </li>
         <li class="stat">
@@ -46,25 +47,39 @@ const total = MAGAZINE_ISSUES.reduce((sum, y) => sum + y.issues.length, 0);
         <p class="eyebrow">Archive</p>
         <h2>Issues by year</h2>
         <p>
-          Older issues are dispatched to subscribers by post. To request a back issue, please
-          <a href={url('/contact/')}>contact the Trust</a>.
+          Every issue below opens the published PDF. Back issues before 2020 are dispatched to
+          subscribers by post — to request one, please <a href={url('/contact/')}>contact the
+          Trust</a>.
         </p>
       </div>
 
       <div class="years">
         {
-          MAGAZINE_ISSUES.map((y) => (
+          MAGAZINE_BY_YEAR.map((y) => (
             <section class="year">
               <h3 class="year__title">{y.year}</h3>
               <ul class="year__list">
                 {y.issues.map((issue) => (
                   <li class="issue">
-                    <span class="issue__name">{issue}</span>
-                    <a class="issue__ask" href={url('/contact/')}>
-                      Request
-                      <span class="visually-hidden"> the {issue} issue</span>
+                    <a
+                      class="issue__name"
+                      href={issue.href}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      {issue.name}
+                      <span class="visually-hidden"> (opens PDF in a new tab)</span>
+                    </a>
+                    <a
+                      class="issue__ask"
+                      href={issue.href}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      aria-label={`Read ${issue.name} (opens PDF in a new tab)`}
+                    >
+                      Read
                       <svg viewBox="0 0 20 20" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M4 10h12M11 5l5 5-5 5" />
+                        <path d="M7 17 17 7M9 7h8v8" />
                       </svg>
                     </a>
                   </li>
@@ -150,6 +165,12 @@ const total = MAGAZINE_ISSUES.reduce((sum, y) => sum + y.issues.length, 0);
   .issue__name {
     font-size: 0.9375rem;
     color: var(--ink-800);
+    text-decoration: none;
+  }
+
+  a.issue__name:hover {
+    color: var(--green-700);
+    text-decoration: underline;
   }
 
   .issue__ask {

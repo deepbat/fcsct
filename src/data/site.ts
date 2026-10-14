@@ -52,24 +52,89 @@ export const SPONSORSHIP_TIERS = [
   { stage: 'Vocational', amount: '₹10,000', note: 'per year' },
 ] as const;
 
-export const MAGAZINE_ISSUES = [
-  { year: '2026', issues: ['January–March 2026', 'April–June 2026', 'July–September 2026', 'October–December 2026'] },
-  { year: '2025', issues: ['January–March 2025', 'April–June 2025', 'July–September 2025', 'October–December 2025'] },
-  { year: '2024', issues: ['January–March 2024', 'April–June 2024', 'July–September 2024', 'October–December 2024'] },
-  { year: '2023', issues: ['March–April 2023', 'May–June 2023', 'July–August 2023', 'September–October 2023', 'November–December 2023'] },
-  { year: '2022', issues: ['March–April 2022', 'May–June 2022', 'July–August 2022', 'September–October 2022', 'November–December 2022'] },
-  { year: '2021', issues: ['January–February 2021', 'March–April 2021', 'May–June 2021', 'July–August 2021', 'September–October 2021', 'November–December 2021'] },
-  { year: '2020', issues: ['January–February 2020', 'March–April 2020', 'May–June 2020', 'July–August 2020', 'September–October 2020', 'November–December 2020'] },
-] as const;
+export interface MagazineIssue {
+  /** Display label, e.g. "January–March 2026" */
+  name: string;
+  year: number;
+  /** Starting month of the issue, used for ordering within a year */
+  month: number;
+  href: string;
+}
+
+/**
+ * Archive of Ideas Exchange issues, in any order — they are sorted for display.
+ * Links point at the PDFs published on the Trust's Google Drive account.
+ */
+export const MAGAZINE_ISSUES: MagazineIssue[] = [
+  { name: 'January–March 2026', year: 2026, month: 1, href: 'https://drive.google.com/file/d/1DHnk5TFV--vF5jjiZH_1fQKRM5En_srR/view' },
+  { name: 'April–June 2026', year: 2026, month: 4, href: 'https://drive.google.com/file/d/1naGvwXXq5pQPajrZ8S_JjW_X2cr-9aJb/view' },
+  { name: 'July–September 2026', year: 2026, month: 7, href: 'https://drive.google.com/file/d/1cxiTj4E1zcJHd0IT_r_uMP4a7v5rxpHe/view' },
+  { name: 'October–December 2026', year: 2026, month: 10, href: 'https://drive.google.com/file/d/1jJWy-qyMS-BVyOGxFkbB4M5dRiWLnP8v/view' },
+
+  { name: 'January–March 2025', year: 2025, month: 1, href: 'https://drive.google.com/file/d/1vqLgGPpvyBGiUP0S8vNnrrrPSUpS0L2Q/view' },
+  { name: 'April–June 2025', year: 2025, month: 4, href: 'https://drive.google.com/file/d/1tp-Gz6PnBLA6NoK22IL3OuNqMnyrrFig/view' },
+  { name: 'July–September 2025', year: 2025, month: 7, href: 'https://drive.google.com/file/d/1XjUyQhNrcoAX3dzvkx9qXD3vONcNoyXc/view' },
+  { name: 'October–December 2025', year: 2025, month: 10, href: 'https://drive.google.com/file/d/1bEoLqmAsC-w2QV0Lz1Q8IzzuCQhnxOfo/view' },
+
+  { name: 'January–March 2024', year: 2024, month: 1, href: 'https://drive.google.com/file/d/1TWEDa7Yvm01AeYR6YZAsgiwgRLw6Ar5i/view' },
+  { name: 'April–June 2024', year: 2024, month: 4, href: 'https://drive.google.com/file/d/1qbw1GOSaLkesNpv7Ikst3RD5L4nO2MG9/view' },
+  { name: 'July–September 2024', year: 2024, month: 7, href: 'https://drive.google.com/file/d/1UHdulDeMSTUqOhKINU2KWMgmGaRjQUo6/view' },
+  { name: 'October–December 2024', year: 2024, month: 10, href: 'https://drive.google.com/file/d/1J96dljLDGorSxZ1nm8AW2lKdBPRJlKdQ/view' },
+
+  { name: 'January–February 2023', year: 2023, month: 1, href: 'https://drive.google.com/file/d/1aLgPPGHgN36GlyFuMY45EIUGXHzNGnFU/view' },
+  { name: 'March–April 2023', year: 2023, month: 3, href: 'https://drive.google.com/file/d/1BpOnwGhz_z9zKAlflvgNoVTM5mXui2PK/view' },
+  { name: 'May–June 2023', year: 2023, month: 5, href: 'https://drive.google.com/file/d/1soH4NGRw47CSTyRIdUAF_uZHAcZLegVh/view' },
+  { name: 'July–August 2023', year: 2023, month: 7, href: 'https://drive.google.com/file/d/1IrAbaEE8LUjpBSGKlBToc40iRg4gy2Ut/view' },
+  { name: 'September–October 2023', year: 2023, month: 9, href: 'https://drive.google.com/file/d/180dMGcfIec56fZopx5sTQUZeM-WUjoJR/view' },
+  { name: 'November–December 2023', year: 2023, month: 11, href: 'https://drive.google.com/file/d/1lj6PkoDAY2-5zQQOF3WZP2I1L2bxnc23/view' },
+
+  { name: 'January–February 2022', year: 2022, month: 1, href: 'https://drive.google.com/file/d/1PKlNk6Z7q_BXWnIH_167WBhgq9A-ozRT/view' },
+  { name: 'March–April 2022', year: 2022, month: 3, href: 'https://drive.google.com/file/d/1g8S-CsjH7uxQpyIy88QmKW2n1a6f93A6/view' },
+  { name: 'May–June 2022', year: 2022, month: 5, href: 'https://drive.google.com/file/d/1HgEhx2nmwqWynrzYSSTeoW59RxaccXup/view' },
+  { name: 'July–August 2022', year: 2022, month: 7, href: 'https://drive.google.com/file/d/19NMHMipFReyHrj3zBvlcyWrVu3hF9nje/view' },
+  { name: 'September–October 2022', year: 2022, month: 9, href: 'https://drive.google.com/file/d/1tv1UCmoYgUSnNgsV3B1VlwUce4SHe0pS/view' },
+  { name: 'November–December 2022', year: 2022, month: 11, href: 'https://drive.google.com/file/d/1vxzfAcxL0WzwwQPOX3bUbfh8U8sC0ieE/view' },
+
+  { name: 'January–February 2021', year: 2021, month: 1, href: 'https://drive.google.com/file/d/1pVgjIja96DaY7iX9ITSes90XRyzqPtue/view' },
+  { name: 'March–April 2021', year: 2021, month: 3, href: 'https://drive.google.com/file/d/1C4rGA1V3nwsglgnfOffo_BNopbeZqeWo/view' },
+  { name: 'May–June 2021', year: 2021, month: 5, href: 'https://drive.google.com/file/d/1yEW3QOte-DhZlhguQggckZ6H5V7X9RQm/view' },
+  { name: 'July–August 2021', year: 2021, month: 7, href: 'https://drive.google.com/file/d/1pl2LgiAm2BxOS4rmuSY4cESP8W0GLceP/view' },
+  { name: 'September–October 2021', year: 2021, month: 9, href: 'https://drive.google.com/file/d/149LLspaO2i8-oUl5hsTAY06VOyetPRVF/view' },
+  { name: 'November–December 2021', year: 2021, month: 11, href: 'https://drive.google.com/file/d/1Xv4XTOG662j9SJWZrJNc4XRZ3orks_ga/view' },
+
+  { name: 'January–February 2020', year: 2020, month: 1, href: 'https://drive.google.com/open?id=1fQwDpnrchitsVE3AimmFLDo0k-tB5MGa' },
+  { name: 'March–April 2020', year: 2020, month: 3, href: 'https://drive.google.com/open?id=1KUgBhSI7op6AX7rnRLq8L0uHjxH-ZkN3' },
+  { name: 'May–June 2020', year: 2020, month: 5, href: 'https://drive.google.com/open?id=1baPaBuo1hBPMvKRaAlyvA9qAdYiTEmVc' },
+  { name: 'July–August 2020', year: 2020, month: 7, href: 'https://drive.google.com/file/d/1y6tnPx9lsbLl4k5e5Lv0H8A9lUflGjdG/view' },
+  { name: 'September–October 2020', year: 2020, month: 9, href: 'https://drive.google.com/file/d/1UECCyDeAskCgdRNCxSZ5U229WTuT2ltd/view' },
+  { name: 'November–December 2020', year: 2020, month: 11, href: 'https://drive.google.com/file/d/1_ARXjb420YdMoN19MMsjWFoG8BUC13t2/view' },
+];
+
+/** Issues grouped by year, newest year first and newest issue first within each year. */
+export const MAGAZINE_BY_YEAR = Object.entries(
+  [...MAGAZINE_ISSUES]
+    .sort((a, b) => b.year - a.year || b.month - a.month)
+    .reduce<Record<number, MagazineIssue[]>>((acc, issue) => {
+      (acc[issue.year] ??= []).push(issue);
+      return acc;
+    }, {}),
+)
+  // Object.entries orders integer-like keys ascending, so sort the years back down.
+  .sort(([a], [b]) => Number(b) - Number(a))
+  .map(([year, issues]) => ({ year: Number(year), issues }));
 
 export interface Update {
+  /** Start month of the quarter, as an ISO date — used for ordering */
+  date: string;
   period: string;
   title: string;
   paragraphs: string[];
 }
 
+/** Quarterly updates, in any order — they are sorted newest first for display. */
 export const UPDATES: Update[] = [
   {
+    date: '2026-04-01',
     period: 'April – June 2026',
     title: 'Vocational education programme & grant revision',
     paragraphs: [
@@ -79,6 +144,7 @@ export const UPDATES: Update[] = [
     ],
   },
   {
+    date: '2026-07-01',
     period: 'July – August – September 2026',
     title: 'Scholarships for students from flood-affected families',
     paragraphs: [
@@ -87,6 +153,7 @@ export const UPDATES: Update[] = [
     ],
   },
   {
+    date: '2026-10-01',
     period: 'October – November – December 2026',
     title: 'Our commitment \u2014 financial and otherwise',
     paragraphs: [
@@ -97,3 +164,6 @@ export const UPDATES: Update[] = [
     ],
   },
 ];
+
+/** Quarterly updates, newest first. */
+export const UPDATES_NEWEST_FIRST = [...UPDATES].sort((a, b) => b.date.localeCompare(a.date));
