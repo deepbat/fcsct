@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://deepbat.github.io/fcsct/sitemap-index.xml

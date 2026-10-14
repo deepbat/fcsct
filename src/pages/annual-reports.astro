@@ -1,0 +1,130 @@
+---
+import { url } from '../lib/urls';
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import { SITE } from '../data/site';
+---
+
+<Base
+  title="Annual Reports"
+  description="Balance Sheet and Income & Expenditure Account of the F. C. Sondhi Charitable Trust as on 31 March 2025. Download and request past years from the Trust office, Jalandhar."
+>
+  <PageHead
+    eyebrow="Accountability"
+    title="Annual Reports"
+    lede="Balance Sheet and Income & Expenditure Account, published as on 31 March each year."
+  />
+
+  <section class="section">
+    <div class="wrap">
+      <div class="report">
+        <div class="report__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path>
+            <path d="M14 3v5h5"></path>
+            <path d="M9 13h6M9 17h4"></path>
+          </svg>
+        </div>
+        <div class="report__body">
+          <span class="pill">As on 31-03-2025</span>
+          <h2 class="mt-4">Balance Sheet &amp; Income &amp; Expenditure Account</h2>
+          <p class="report__text mt-4">
+            The audited accounts of the Trust for the financial year ended 31 March 2025 are
+            available on request from the Trust office, and can also be inspected during office
+            hours.
+          </p>
+          <div class="report__actions mt-5">
+            <a class="btn btn--primary" href={`mailto:${SITE.email}?subject=${encodeURIComponent('Request for Annual Report 2024-25')}`}>
+              Request the report
+            </a>
+            <a class="btn btn--ghost" href={url('/contact/')}>Office hours &amp; address</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout mt-6">
+        <span class="callout__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path>
+            <path d="M9 12l2 2 4-4"></path>
+          </svg>
+        </span>
+        <div>
+          <h3>Where the money goes</h3>
+          <p>
+            Every paisa of donated money is issued for the scholarship or grant it was given
+            for, and all administration costs are borne by the Trust itself. If you would like
+            to see how a specific donation was used, ask us — we will tell you.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid--3 mt-7">
+        <div class="card">
+          <h3>Section 80G</h3>
+          <p class="card__body">All donations are exempted under section 80G.</p>
+        </div>
+        <div class="card">
+          <h3>Home verification</h3>
+          <p class="card__body">
+            Every scholarship application is confirmed by a visit to the student’s home.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Quarterly updates</h3>
+          <p class="card__body">
+            Disbursals and programme updates are published each quarter for donors to review.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .report {
+    display: grid;
+    gap: var(--sp-5);
+    padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-xl);
+    box-shadow: var(--shadow-md);
+  }
+
+  @media (min-width: 760px) {
+    .report {
+      grid-template-columns: 84px 1fr;
+      gap: var(--sp-6);
+      align-items: start;
+    }
+  }
+
+  .report__icon {
+    display: grid;
+    place-items: center;
+    width: 72px;
+    height: 72px;
+    border-radius: var(--r-lg);
+    background: var(--green-50);
+    border: 1px solid var(--green-100);
+    color: var(--green-700);
+  }
+
+  .report__text {
+    max-width: 60ch;
+    color: var(--text-muted);
+  }
+
+  .report__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+  }
+
+  .card__body {
+    margin-top: var(--sp-3);
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+  }
+</style>

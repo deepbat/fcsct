@@ -1,0 +1,323 @@
+---
+import { url } from '../lib/urls';
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import { SITE, SPONSORSHIP_TIERS } from '../data/site';
+
+const methods = [
+  {
+    id: 'cheque',
+    title: 'By cheque',
+    body: 'Make out the cheque in the name of “F.C. Sondhi Charitable Trust” and send it to 15 Adarsh Nagar, Jalandhar – 144008.',
+  },
+  {
+    id: 'bank',
+    title: 'Bank transfer — NEFT / RTGS',
+    body: 'Use the account details below. Please mention your name and phone number so we can acknowledge your gift.',
+  },
+  {
+    id: 'paytm',
+    title: 'By UPI / Paytm QR code',
+    body: 'Scan the QR code and inform us by SMS, call or WhatsApp so that we can record the donation against your name.',
+  },
+];
+---
+
+<Base
+  title="How to Donate"
+  description="How to donate to the F. C. Sondhi Charitable Trust — by cheque, bank transfer (NEFT/RTGS) or UPI. All donations are exempt under Section 80G. Jalandhar, Punjab."
+>
+  <PageHead
+    eyebrow="Give"
+    title="How to Donate"
+    lede="Three simple ways to give. All donations are exempted under Section 80G — and every rupee reaches the beneficiary."
+  />
+
+  <!-- ============ RATES ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">New rates</p>
+        <h2>Sponsoring a student, sports scholarship and grant-in-aid</h2>
+        <p>
+          The following annual amounts are sufficient to sponsor a student. You may adopt a
+          child for one year, two years or more.
+        </p>
+      </div>
+
+      <div class="rates">
+        <div class="table-wrap">
+          <table>
+            <caption>Student sponsorship — annual</caption>
+            <thead>
+              <tr>
+                <th scope="col">Class / Course</th>
+                <th scope="col">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                SPONSORSHIP_TIERS.map((t) => (
+                  <tr>
+                    <th scope="row">{t.stage}</th>
+                    <td class="amount">
+                      {t.amount} <span class="unit">{t.note}</span>
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <div class="rates__aside">
+          <div class="card rates__card">
+            <span class="pill pill--gold">Grant in-aid</span>
+            <h3>Grants to the elderly / young widows</h3>
+            <p class="rates__lead">
+              <strong>₹10,200 per year</strong> is sufficient to take care of one old or
+              destitute person, young widow, or physically challenged person.
+            </p>
+          </div>
+
+          <div class="callout">
+            <span class="callout__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5"></path>
+              </svg>
+            </span>
+            <div>
+              <h3>Section 80G exempt</h3>
+              <p>
+                All donations to the Trust are exempted under section 80G. Keep your donation
+                receipt for your return.
+              </p>
+            </div>
+          </div>
+
+          <div class="dedicate">
+            <h3>Dedicate your gift</h3>
+            <p>
+              A scholarship or grant can be named in honour of someone dear to you — for
+              example <em>Sushila Khanna Scholarship</em>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ METHODS ============ -->
+  <section class="section section--alt" id="payments">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Payments</p>
+        <h2>How to send your payment</h2>
+        <p>
+          Please let us have your email id or mobile number if you plan to sponsor a scholarship
+          or grant, so we can confirm and keep you informed.
+        </p>
+      </div>
+
+      <div class="methods">
+        {
+          methods.map((m, i) => (
+            <div class="method">
+              <span class="step">{String(i + 1).padStart(2, '0')}</span>
+              <h3>{m.title}</h3>
+              <p>{m.body}</p>
+            </div>
+          ))
+        }
+
+        <div class="details bank-details">
+          <div class="details__row">
+            <span class="details__key">Beneficiary</span>
+            <span class="details__val">{SITE.bank.beneficiary}</span>
+          </div>
+          <div class="details__row">
+            <span class="details__key">Bank name &amp; address</span>
+            <span class="details__val">{SITE.bank.bankName}</span>
+          </div>
+          <div class="details__row">
+            <span class="details__key">Account number</span>
+            <span class="details__val mono">{SITE.bank.accountNumber}</span>
+          </div>
+          <div class="details__row">
+            <span class="details__key">IFSC code</span>
+            <span class="details__val mono">{SITE.bank.ifsc}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta mt-7">
+        <div>
+          <h3>Prefer to talk it through first?</h3>
+          <p>
+            Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> or WhatsApp / SMS{' '}
+            <a href={`https://wa.me/${SITE.whatsapp}`} rel="noopener" target="_blank">{SITE.phone}</a>.
+          </p>
+        </div>
+        <div class="cta__actions">
+          <a class="btn btn--accent" href={`https://wa.me/${SITE.whatsapp}`} rel="noopener" target="_blank">
+            WhatsApp the Trust
+          </a>
+          <a class="btn btn--outline-invert" href={url('/grants-scholarships/')}>See the schemes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .rates {
+    display: grid;
+    gap: var(--sp-5);
+    align-items: start;
+  }
+
+  @media (min-width: 960px) {
+    .rates {
+      grid-template-columns: 1.35fr 1fr;
+      gap: var(--sp-6);
+    }
+  }
+
+  .unit {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+
+  .rates__aside {
+    display: grid;
+    gap: var(--sp-4);
+  }
+
+  .rates__card h3 {
+    margin-top: var(--sp-4);
+  }
+
+  .rates__lead {
+    margin-top: var(--sp-4);
+    font-size: 1rem;
+    color: var(--ink-700);
+  }
+
+  .rates__lead strong {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--green-700);
+    display: block;
+    margin-bottom: 0.35rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .dedicate {
+    padding: var(--sp-5);
+    border-radius: var(--r-lg);
+    background: var(--green-900);
+    color: rgb(255 255 255 / 0.78);
+  }
+
+  .dedicate h3 {
+    color: #fff;
+    font-size: 1.0625rem;
+  }
+
+  .dedicate p {
+    margin-top: var(--sp-2);
+    font-size: 0.9375rem;
+  }
+
+  /* Methods */
+  .methods {
+    display: grid;
+    gap: var(--sp-4);
+  }
+
+  @media (min-width: 760px) {
+    .methods {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 900px) {
+    .bank-details {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .method {
+    padding: var(--sp-5);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .step {
+    display: inline-grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: var(--r-full);
+    background: var(--green-50);
+    border: 1px solid var(--green-100);
+    color: var(--green-700);
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 600;
+  }
+
+  .method h3 {
+    margin-top: var(--sp-4);
+    font-size: 1.1875rem;
+  }
+
+  .method p {
+    margin-top: var(--sp-3);
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+  }
+
+  /* CTA */
+  .cta {
+    display: grid;
+    gap: var(--sp-5);
+    padding: var(--sp-6);
+    border-radius: var(--r-xl);
+    background:
+      radial-gradient(120% 140% at 85% 10%, var(--green-700) 0%, var(--green-900) 60%, #071d17 100%);
+    color: var(--text-invert);
+  }
+
+  @media (min-width: 860px) {
+    .cta {
+      grid-template-columns: 1.4fr auto;
+      align-items: center;
+      gap: var(--sp-7);
+    }
+  }
+
+  .cta h3 {
+    color: #fff;
+  }
+
+  .cta p {
+    margin-top: var(--sp-3);
+    color: rgb(255 255 255 / 0.76);
+  }
+
+  .cta a:not(.btn) {
+    color: var(--gold-500);
+  }
+
+  .cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+  }
+</style>

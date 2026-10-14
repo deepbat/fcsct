@@ -1,0 +1,351 @@
+---
+import { url } from '../lib/urls';
+import { NAV, SITE } from '../data/site';
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const isActive = (href: string) => {
+  const path = href.replace(/\/$/, '') || '/';
+  const cur = currentPath.replace(/\/$/, '') || '/';
+  return path === '/' ? cur === '/' : cur.startsWith(path);
+};
+
+const donateHref = NAV.find((i) => i.href.includes('donate'))?.href ?? '/how-to-donate/';
+---
+
+<header class="site-header" data-header>
+  <div class="bar">
+    <div class="wrap bar__inner">
+      <a class="brand" href={url('/')}>
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="36" height="36" fill="none">
+            <circle cx="20" cy="20" r="19" fill="currentColor" opacity="0.12"></circle>
+            <path
+              d="M20 9c4.2 3.6 6.3 6.6 6.3 10 0 3-1.9 5.6-4.4 5.6-1.2 0-2.1-.4-2.9-1.1l-1.4 1.4 1.1 1.2h5.2l1.1 1.4-1.4 1.4c.8.7 1.7 1.1 2.9 1.1 2.5 0 4.4-2.6 4.4-5.6 0-3.4-2.1-6.4-6.3-10"
+              fill="currentColor"></path>
+            <path d="M14 30h12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path>
+          </svg>
+        </span>
+        <span class="brand__text">
+          <span class="brand__name">F. C. Sondhi</span>
+          <span class="brand__sub">Charitable Trust</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Main">
+        <ul class="nav__list" data-nav-list>
+          {
+            NAV.map((item) => (
+              <li>
+                <a
+                  href={url(item.href)}
+                  class="nav__link"
+                  aria-current={isActive(item.href) ? 'page' : undefined}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div class="actions">
+        <a class="btn btn--accent header-cta" href={url(donateHref)}>Donate</a>
+        <button
+          class="burger"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+          data-menu-toggle
+        >
+          <span class="visually-hidden">Open menu</span>
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M3 6h18M3 12h18M3 18h18" data-icon-line-1></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile" id="mobile-nav" data-mobile-panel hidden>
+    <ul class="mobile__list wrap">
+      {
+        NAV.map((item) => (
+          <li>
+            <a
+              href={url(item.href)}
+              class="mobile__link"
+              aria-current={isActive(item.href) ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+      <li class="mobile__cta">
+        <a class="btn btn--accent" href={url(donateHref)}>How to Donate</a>
+      </li>
+      <li class="mobile__contact">
+        <a href={`tel:+${SITE.whatsapp}`}>{SITE.phone}</a>
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .bar {
+    background: rgb(251 250 247 / 0.86);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid transparent;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .bar[data-stuck] {
+    border-bottom-color: var(--line);
+    box-shadow: 0 1px 16px rgb(11 43 35 / 0.06);
+  }
+
+  .bar__inner {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-5);
+    min-height: var(--header-h);
+  }
+
+  /* Brand */
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    text-decoration: none;
+    color: var(--green-800);
+    margin-right: auto;
+    flex-shrink: 0;
+  }
+
+  .brand__mark {
+    color: var(--green-600);
+    display: grid;
+    place-items: center;
+  }
+
+  .brand__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .brand__name {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .brand__sub {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold-700);
+  }
+
+  /* Desktop nav */
+  .nav {
+    display: none;
+  }
+
+  .nav__list {
+    display: flex;
+    align-items: center;
+    gap: 0.15rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav__link {
+    display: block;
+    padding: 0.5rem 0.7rem;
+    border-radius: var(--r-sm);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ink-700);
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      color 0.15s ease,
+      background-color 0.15s ease;
+  }
+
+  .nav__link:hover {
+    color: var(--green-800);
+    background: var(--green-50);
+  }
+
+  .nav__link[aria-current='page'] {
+    color: var(--green-800);
+    font-weight: 600;
+    background: var(--green-50);
+    box-shadow: inset 0 -2px 0 var(--gold-500);
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+  }
+
+  .header-cta {
+    display: none;
+    padding: 0.6rem 1.15rem;
+    font-size: 0.875rem;
+  }
+
+  /* Burger */
+  .burger {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: var(--r-md);
+    color: var(--green-800);
+    border: 1px solid var(--line);
+    background: var(--surface);
+  }
+
+  /* Mobile panel */
+  .mobile {
+    display: none;
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+    box-shadow: var(--shadow-md);
+    max-height: calc(100dvh - var(--header-h));
+    overflow-y: auto;
+  }
+
+  .mobile[data-open] {
+    display: block;
+  }
+
+  .mobile__list {
+    list-style: none;
+    padding: var(--sp-3) var(--sp-5) var(--sp-5);
+    margin: 0;
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .mobile__link {
+    display: block;
+    padding: 0.85rem 0.5rem;
+    border-bottom: 1px solid var(--line-soft);
+    font-weight: 500;
+    color: var(--ink-800);
+    text-decoration: none;
+  }
+
+  .mobile__link[aria-current='page'] {
+    color: var(--green-700);
+    font-weight: 600;
+  }
+
+  .mobile__cta {
+    padding-top: var(--sp-4);
+  }
+
+  .mobile__contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-4);
+    padding-top: var(--sp-4);
+    font-size: 0.875rem;
+  }
+
+  @media (min-width: 1080px) {
+    .nav {
+      display: block;
+    }
+    .burger {
+      display: none;
+    }
+    .header-cta {
+      display: inline-flex;
+    }
+  }
+
+  @media (min-width: 900px) and (max-width: 1079px) {
+    .nav {
+      display: block;
+    }
+    .burger {
+      display: none;
+    }
+    .nav__list {
+      gap: 0;
+    }
+    .nav__link {
+      font-size: 0.8125rem;
+      padding: 0.45rem 0.45rem;
+    }
+  }
+</style>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header] .bar');
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const panel = document.querySelector<HTMLElement>('[data-mobile-panel]');
+
+  const setStuck = () => {
+    if (!header) return;
+    if (window.scrollY > 8) header.setAttribute('data-stuck', '');
+    else header.removeAttribute('data-stuck');
+  };
+  setStuck();
+  window.addEventListener('scroll', setStuck, { passive: true });
+
+  if (toggle && panel) {
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      panel.hidden = !open;
+      if (open) panel.setAttribute('data-open', '');
+      else panel.removeAttribute('data-open');
+      const label = toggle.querySelector('.visually-hidden');
+      if (label) label.textContent = open ? 'Close menu' : 'Open menu';
+      const line = toggle.querySelector('svg path');
+      if (line) line.setAttribute('d', open ? 'M6 6l12 12M18 6L6 18' : 'M3 6h18M3 12h18M3 18h18');
+    };
+
+    setOpen(false);
+
+    toggle.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+
+    window.matchMedia('(min-width: 1080px)').addEventListener('change', (e) => {
+      if (e.matches) setOpen(false);
+    });
+  }
+</script>

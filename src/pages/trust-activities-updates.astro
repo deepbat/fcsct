@@ -1,0 +1,117 @@
+---
+import { url } from '../lib/urls';
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import { UPDATES } from '../data/site';
+
+const [latest, ...rest] = UPDATES;
+---
+
+<Base
+  title="Trust Activities & Updates"
+  description="Quarterly updates from the F. C. Sondhi Charitable Trust — grant disbursals, new scholarship programmes, vocational education initiatives and beneficiary stories from Jalandhar."
+>
+  <PageHead
+    eyebrow="Activities & Updates"
+    title="What the Trust has been doing"
+    lede="A quarterly account of disbursals, new programmes and the people behind them."
+  />
+
+  <!-- ============ SNAPSHOT ============ -->
+  <section class="section section--tight">
+    <div class="wrap">
+      <ul class="grid grid--4 snapshot">
+        <li class="stat">
+          <span class="stat__value">₹70<em>lakh</em></span>
+          <span class="stat__label">Estimated expenditure planned this financial year</span>
+        </li>
+        <li class="stat">
+          <span class="stat__value">₹36<em>lakh</em></span>
+          <span class="stat__label">Disbursed up to August 2026</span>
+        </li>
+        <li class="stat">
+          <span class="stat__value">₹34<em>lakh</em></span>
+          <span class="stat__label">Earmarked for the remaining commitments</span>
+        </li>
+        <li class="stat">
+          <span class="stat__value">850<em>+</em></span>
+          <span class="stat__label">Deserving beneficiaries targeted</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ UPDATES ============ -->
+  <section class="section section--alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Quarterly log</p>
+        <h2>Updates, most recent first</h2>
+      </div>
+
+      <div class="timeline">
+        {latest && (
+          <article class="update">
+            <span class="update__period">{latest.period}</span>
+            <h3>{latest.title}</h3>
+            {latest.paragraphs.map((p) => <p>{p}</p>)}
+          </article>
+        )}
+        {rest.map((u) => (
+          <article class="update">
+            <span class="update__period">{u.period}</span>
+            <h3>{u.title}</h3>
+            {u.paragraphs.map((p) => <p>{p}</p>)}
+          </article>
+        ))}
+      </div>
+
+      <div class="callout mt-6">
+        <span class="callout__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6 9 17l-5-5"></path>
+          </svg>
+        </span>
+        <div>
+          <h3>Our commitment — financial and otherwise</h3>
+          <p>
+            We endeavour to ensure that assistance reaches deserving individuals in a timely,
+            efficient and transparent manner, while continuing our efforts to make a meaningful
+            difference in their lives.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DONOR CTA ============ -->
+  <section class="section">
+    <div class="wrap center text-center">
+      <p class="eyebrow" style="justify-content:center">Get involved</p>
+      <h2 class="mt-4">Know someone who needs a scholarship?</h2>
+      <p class="lede mt-4 center measure">
+        Application forms are available through the Trust office at 15 Adarsh Nagar, Jalandhar.
+        Every application is verified by a home visit.
+      </p>
+      <div class="cta-row mt-6" style="justify-content:center">
+        <a class="btn btn--primary" href={url('/contact/')}>Contact the Trust</a>
+        <a class="btn btn--ghost" href={url('/grants-scholarships/')}>See eligibility &amp; amounts</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .snapshot {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    row-gap: var(--sp-5);
+  }
+
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+  }
+</style>

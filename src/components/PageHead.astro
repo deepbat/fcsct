@@ -1,0 +1,29 @@
+---
+import { url } from '../lib/urls';
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lede?: string;
+}
+
+const { eyebrow, title, lede } = Astro.props;
+---
+
+<section class="page-head">
+  <div class="wrap">
+    <ol class="breadcrumb">
+      <li><a href={url('/')}>Home</a></li>
+      <li aria-hidden="true">/</li>
+      <li aria-current="page">{title}</li>
+    </ol>
+    {eyebrow && <p class="eyebrow mt-4">{eyebrow}</p>}
+    <h1>{title}</h1>
+    {lede && <p class="lede">{lede}</p>}
+  </div>
+</section>
+
+<style>
+  .eyebrow {
+    color: var(--gold-500);
+  }
+</style>

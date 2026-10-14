@@ -1,0 +1,184 @@
+---
+import { url } from '../lib/urls';
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+
+const subscriptions = [
+  { region: 'Within India', rows: [{ term: '2 years', price: '₹500' }, { term: '4 years', price: '₹800' }] },
+  { region: 'Outside India', rows: [{ term: '1 year', price: '₹1,000' }, { term: '2 years', price: '₹1,500' }] },
+];
+---
+
+<Base
+  title="Ideas Exchange"
+  description="Ideas Exchange, the newsletter of the F. C. Sondhi Charitable Trust, has been published regularly since 1978 and circulates to about 1000 members across India and abroad. Subscribe from ₹500."
+>
+  <PageHead
+    eyebrow="Newsletter since 1978"
+    title="Ideas Exchange"
+    lede="A newsletter of spiritual, moral and general-interest articles, condensed into an easily readable form — and a forum for readers to exchange ideas across the world."
+  />
+
+  <section class="section">
+    <div class="wrap">
+      <div class="split">
+        <div class="prose">
+          <p>
+            The Trust also runs a newsletter which has been regularly published since the
+            inception of the Trust. The newsletter, by the name of
+            <strong>“Ideas Exchange”</strong>, contains spiritual, moral and general-interest
+            articles condensed into an easily readable form for our readers.
+          </p>
+          <p>
+            Our founder, Late Sh. F. C. Sondhi, worked hard to start the Ideas Exchange on a
+            regular basis, and in the early days he did all the work of compiling articles which
+            could be of interest to readers. As the name of the magazine indicates, Sh. F. C.
+            Sondhi was keen that this little magazine could become a forum where readers would
+            write in their various different ideas, and that it would become a medium for
+            exchange of ideas between people all over the world.
+          </p>
+          <p>
+            It currently has a circulation of about <strong>1,000 members</strong>, spread all
+            over India and other countries. Mr. F. C. Sondhi’s grand-daughter, Gitanjali, was the
+            editor for 20 years.
+          </p>
+        </div>
+
+        <aside class="aside">
+          <div class="quote">
+            <blockquote>
+              A forum where readers write in their various different ideas — a medium for
+              exchange of ideas between people all over the world.
+            </blockquote>
+            <cite>Sh. F. C. Sondhi, Founder</cite>
+          </div>
+
+          <div class="stat stat--box">
+            <span class="stat__value">1,000</span>
+            <span class="stat__label">Members, spread across India and other countries</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Subscription</p>
+        <h2>Join the readership</h2>
+        <p>
+          Subscribe for one, two or four years. To subscribe, contact the Trust and we will
+          arrange despatch.
+        </p>
+      </div>
+
+      <div class="grid grid--2">
+        {
+          subscriptions.map((s) => (
+            <div class="table-wrap">
+              <table>
+                <caption>{s.region}</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Term</th>
+                    <th scope="col">Subscription</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {s.rows.map((r) => (
+                    <tr>
+                      <th scope="row">{r.term}</th>
+                      <td class="amount">{r.price}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="callout mt-6">
+        <span class="callout__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 11c0 5.65-7 10-7 10Z"></path>
+          </svg>
+        </span>
+        <div>
+          <h3>Every penny reaches the student or widow</h3>
+          <p>
+            Our Trust accepts donations for helping poor and needy students and destitute
+            widows. Every penny donated reaches the student or widow — all administration costs
+            are borne by the Trust.
+          </p>
+        </div>
+      </div>
+
+      <div class="cta-row mt-6">
+        <a class="btn btn--primary" href={url('/contact/')}>Subscribe or enquire</a>
+        <a class="btn btn--ghost" href={url('/e-magazine/')}>Browse past issues</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .split {
+    display: grid;
+    gap: var(--sp-6);
+  }
+
+  @media (min-width: 960px) {
+    .split {
+      grid-template-columns: 1.35fr 1fr;
+      gap: var(--sp-8);
+      align-items: start;
+    }
+  }
+
+  .aside {
+    display: grid;
+    gap: var(--sp-4);
+  }
+
+  .quote {
+    padding: var(--sp-5);
+    border-radius: var(--r-lg);
+    background: var(--green-900);
+    color: rgb(255 255 255 / 0.85);
+  }
+
+  .quote blockquote {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    line-height: 1.5;
+    color: #fff;
+  }
+
+  .quote cite {
+    display: block;
+    margin-top: var(--sp-4);
+    font-size: 0.8125rem;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold-500);
+  }
+
+  .stat--box {
+    padding: var(--sp-5);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+  }
+</style>
