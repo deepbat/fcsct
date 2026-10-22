@@ -95,7 +95,10 @@ const browser = await chromium.launch();
 const errors = [];
 
 for (const vp of viewports) {
-  const ctx = await browser.newContext({ viewport: { width: vp.width, height: vp.height } });
+  const ctx = await browser.newContext({
+    viewport: { width: vp.width, height: vp.height },
+    reducedMotion: 'reduce',
+  });
   const page = await ctx.newPage();
 
   page.on('console', (m) => {
@@ -106,7 +109,21 @@ for (const vp of viewports) {
 
   for (const [slug, path] of pages) {
     const res = await page.goto(`${ORIGIN}${BASE}${path}`, { waitUntil: 'networkidle' });
-    await page.waitForTimeout(250);
+    // Scroll through the page so IntersectionObserver reveals the .rv elements.
+    await page.evaluate(async () => {
+      await new Promise((res) => {
+        let y = 0;
+        const step = () => {
+          y += 600;
+          scrollTo(0, y);
+          if (y < document.body.scrollHeight) setTimeout(step, 50);
+          else res();
+        };
+        step();
+      });
+      scrollTo(0, 0);
+    });
+    await page.waitForTimeout(500);
     await page.screenshot({ path: `${OUT}/${slug}-${vp.name}.png`, fullPage: vp.name === 'desktop' });
     console.log(`${vp.name.padEnd(7)} ${slug.padEnd(14)} ${res?.status()}`);
   }
@@ -114,7 +131,7 @@ for (const vp of viewports) {
   // mobile menu open
   if (vp.name === 'mobile') {
     await page.goto(`${ORIGIN}${BASE}/`, { waitUntil: 'networkidle' });
-    await page.click('[data-menu-toggle]');
+    await page.click('#menu');
     await page.waitForTimeout(300);
     await page.screenshot({ path: `${OUT}/menu-mobile.png` });
     console.log('mobile  menu open');

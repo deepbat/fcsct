@@ -7,124 +7,175 @@ import { SITE } from '../data/site';
 
 <Base
   title="Annual Reports"
-  description="Balance Sheet and Income & Expenditure Account of the F. C. Sondhi Charitable Trust as on 31 March 2025. Download and request past years from the Trust office, Jalandhar."
+  description="Balance Sheet and Income & Expenditure Account of the F. C. Sondhi Charitable Trust as on 31 March 2025."
 >
   <PageHead
-    eyebrow="Accountability"
-    title="Annual Reports"
-    lede="Balance Sheet and Income & Expenditure Account, published as on 31 March each year."
+    eyebrow="Annual reports"
+    title="Open books"
+    lede="Balance Sheet and Income & Expenditure Account as on 31-03-2025."
   />
 
-  <section class="section">
+  <!-- ============ REPORT ============ -->
+  <section class="section-tight">
     <div class="wrap">
-      <div class="report">
-        <div class="report__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path>
-            <path d="M14 3v5h5"></path>
-            <path d="M9 13h6M9 17h4"></path>
-          </svg>
-        </div>
-        <div class="report__body">
-          <span class="pill">As on 31-03-2025</span>
-          <h2 class="mt-4">Balance Sheet &amp; Income &amp; Expenditure Account</h2>
-          <p class="report__text mt-4">
-            The audited accounts of the Trust for the financial year ended 31 March 2025 are
-            available on request from the Trust office, and can also be inspected during office
-            hours.
-          </p>
-          <div class="report__actions mt-5">
-            <a class="btn btn--primary" href={`mailto:${SITE.email}?subject=${encodeURIComponent('Request for Annual Report 2024-25')}`}>
-              Request the report
-            </a>
-            <a class="btn btn--ghost" href={url('/contact/')}>Office hours &amp; address</a>
+      <div class="a-grid" style="margin-top:0">
+        <div class="card rv">
+          <div class="fc-bar"><i></i><i></i><i></i><span>annual-report-2024-25.pdf</span></div>
+          <div class="card-body">
+            <span class="badge"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" /><path d="M14 3v5h5" /></svg>As on 31-03-2025</span>
+            <h2 class="h-item" style="margin-top:1rem;font-size:1.5rem">Balance Sheet &amp; Income &amp; Expenditure Account</h2>
+            <p style="margin-top:0.7rem;color:var(--ink-2)">
+              The audited accounts of the Trust for the financial year ended 31 March 2025. Reports
+              from earlier years are available on request from the Trust office, and can be
+              inspected during office hours.
+            </p>
+            <div class="hero-cta" style="margin-top:1.3rem">
+              <button class="cta" type="button" data-zoom>View the report<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="M21 21l-4.35-4.35M11 8v6M8 11h6" /></svg></button>
+              <a class="cta cta--ghost" href={`mailto:${SITE.email}?subject=${encodeURIComponent('Request for Annual Report 2024-25')}`}>Request past years</a>
+            </div>
           </div>
         </div>
+        <figure class="card report-fig rv">
+          <img
+            class="report-img"
+            src={url('/images/balance-sheet.webp')}
+            alt="Balance sheet and income and expenditure account as on 31-03-2025"
+            loading="lazy"
+            data-zoom
+          />
+          <figcaption class="mono" style="padding:0.7rem 0.9rem;color:var(--muted)">Tap or click to zoom</figcaption>
+        </figure>
       </div>
 
-      <div class="callout mt-6">
-        <span class="callout__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path>
-            <path d="M9 12l2 2 4-4"></path>
-          </svg>
-        </span>
-        <div>
-          <h3>Where the money goes</h3>
-          <p>
-            Every paisa of donated money is issued for the scholarship or grant it was given
-            for, and all administration costs are borne by the Trust itself. If you would like
-            to see how a specific donation was used, ask us — we will tell you.
-          </p>
+      <dialog id="dlg" class="lb" aria-label="Balance sheet, enlarged">
+        <div class="lb-in">
+          <div class="lb-bar">
+            <span>Balance Sheet &amp; Income &amp; Expenditure — 31-03-2025</span>
+            <button class="lb-close" id="dlg-close" type="button" aria-label="Close">
+              <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" /></svg>
+            </button>
+          </div>
+          <div class="lb-stage"><img id="dimg" src={url('/images/balance-sheet.webp')} alt="Balance sheet and income and expenditure account as on 31-03-2025" /></div>
         </div>
-      </div>
+      </dialog>
+    </div>
+  </section>
 
-      <div class="grid grid--3 mt-7">
-        <div class="card">
-          <h3>Section 80G</h3>
-          <p class="card__body">All donations are exempted under section 80G.</p>
+  <!-- ============ ACCOUNTABILITY ============ -->
+  <section class="band">
+    <div class="wrap">
+      <p class="eyebrow rv"><span class="n">Accountability</span></p>
+      <h2 class="h-sec rv">Where the <span class="hl">money goes.</span></h2>
+      <div class="w-grid" style="grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr))">
+        <div class="card pcard rv" style="background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.35)">
+          <div class="p-top"><div class="ic" style="background:rgba(240,251,41,.15)"><svg viewBox="0 0 24 24" style="stroke:var(--lime)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" /><path d="M9 12l2 2 4-4" /></svg></div><span class="p-num" style="color:#9fb6c6">80G</span></div>
+          <h3 style="color:#fff">Tax exempt</h3>
+          <p class="d" style="color:#b9cad6">All donations to the Trust are exempted under section 80G.</p>
         </div>
-        <div class="card">
-          <h3>Home verification</h3>
-          <p class="card__body">
-            Every scholarship application is confirmed by a visit to the student’s home.
-          </p>
+        <div class="card pcard rv" style="background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.35)">
+          <div class="p-top"><div class="ic" style="background:rgba(240,251,41,.15)"><svg viewBox="0 0 24 24" style="stroke:var(--lime)"><path d="M4 20V9l8-5 8 5v11" /><path d="M9 20v-6h6v6M4 20h16" /></svg></div><span class="p-num" style="color:#9fb6c6">Home visits</span></div>
+          <h3 style="color:#fff">Verified before we pay</h3>
+          <p class="d" style="color:#b9cad6">Every scholarship application is confirmed by a visit to the student&rsquo;s home.</p>
         </div>
-        <div class="card">
-          <h3>Quarterly updates</h3>
-          <p class="card__body">
-            Disbursals and programme updates are published each quarter for donors to review.
-          </p>
+        <div class="card pcard rv" style="background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.35)">
+          <div class="p-top"><div class="ic" style="background:rgba(240,251,41,.15)"><svg viewBox="0 0 24 24" style="stroke:var(--lime)"><rect x="3" y="4" width="18" height="14" rx="2" /><path d="M3 9h18M8 21h8" /></svg></div><span class="p-num" style="color:#9fb6c6">Quarterly</span></div>
+          <h3 style="color:#fff">Published updates</h3>
+          <p class="d" style="color:#b9cad6">Disbursals and programme updates are published every quarter for donors to review.</p>
         </div>
       </div>
+      <p class="rv" style="margin-top:1.4rem;color:#9fb6c6;font-size:.95rem">
+        If you would like to see how a specific donation was used, ask us — we will tell you.
+      </p>
     </div>
   </section>
 </Base>
 
+<script is:inline>
+  (function () {
+    var dlg = document.getElementById('dlg');
+    if (!dlg) return;
+    document.querySelectorAll('[data-zoom]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        dlg.showModal();
+      });
+    });
+    document.getElementById('dlg-close').onclick = function () {
+      dlg.close();
+    };
+    dlg.addEventListener('click', function (e) {
+      if (e.target === dlg) dlg.close();
+    });
+  })();
+</script>
+
 <style>
-  .report {
-    display: grid;
-    gap: var(--sp-5);
-    padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--r-xl);
-    box-shadow: var(--shadow-md);
+  .report-fig img {
+    width: 100%;
+    max-height: 520px;
+    object-fit: contain;
+    object-position: top;
+    background: #fff;
+    cursor: zoom-in;
+    border-bottom: var(--bd);
   }
-
-  @media (min-width: 760px) {
-    .report {
-      grid-template-columns: 84px 1fr;
-      gap: var(--sp-6);
-      align-items: start;
-    }
+  .lb {
+    border: none;
+    padding: 0;
+    background: transparent;
+    max-width: 94vw;
+    max-height: 94vh;
   }
-
-  .report__icon {
+  .lb::backdrop {
+    background: rgba(4, 27, 42, 0.9);
+  }
+  .lb-in {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .lb-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem var(--pad);
+    color: #e8f3fa;
+    font-family: var(--f-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .lb-close {
+    background: var(--lime);
+    border: 2px solid var(--lime);
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
     display: grid;
     place-items: center;
-    width: 72px;
-    height: 72px;
-    border-radius: var(--r-lg);
-    background: var(--green-50);
-    border: 1px solid var(--green-100);
-    color: var(--green-700);
+    cursor: pointer;
+    flex: none;
   }
-
-  .report__text {
-    max-width: 60ch;
-    color: var(--text-muted);
+  .lb-close svg {
+    width: 16px;
+    height: 16px;
+    stroke: #052b42;
+    stroke-width: 2.4;
+    fill: none;
+    stroke-linecap: round;
   }
-
-  .report__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--sp-3);
+  .lb-stage {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    padding: 0 var(--pad) 1.2rem;
   }
-
-  .card__body {
-    margin-top: var(--sp-3);
-    font-size: 0.9375rem;
-    color: var(--text-muted);
+  .lb-stage img {
+    max-height: 78vh;
+    max-width: 92vw;
+    border: 3px solid #e8f3fa;
+    border-radius: 10px;
+    background: #fff;
   }
 </style>

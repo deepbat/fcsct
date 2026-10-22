@@ -3,236 +3,42 @@ import { url } from '../lib/urls';
 import { NAV, SITE } from '../data/site';
 
 const year = new Date().getFullYear();
-
-const explore = NAV.filter((i) => !['/', '/how-to-donate/'].includes(i.href)).slice(0, 6);
+const explore = NAV.filter((i) => i.href !== '/');
 ---
 
-<footer class="site-footer">
-  <div class="footer-cta">
-    <div class="wrap footer-cta__inner">
-      <div>
-        <h2>Every rupee reaches the person you intend.</h2>
-        <p>
-          The Trust bears all administrative costs, so your donation goes entirely to
-          scholarships, grants and vocational training.
-        </p>
-      </div>
-      <div class="footer-cta__actions">
-        <a class="btn btn--accent" href={url('/how-to-donate/')}>How to Donate</a>
-        <a class="btn btn--outline-invert" href={url('/grants-scholarships/')}>See the Schemes</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="wrap footer-main">
-    <div class="footer-brand">
-      <span class="brand__name">F. C. Sondhi</span>
-      <span class="brand__sub">Charitable Trust</span>
-      <p class="footer-brand__desc">{SITE.description}</p>
-      <p class="footer-brand__tag">
-        Registered charitable trust &middot; Donations exempt under <strong>Section 80G</strong>
-      </p>
+<footer>
+  <div class="foot-grid">
+    <div>
+      <a class="foot-brand" href={url('/')}>
+        <span class="mark" aria-hidden="true">FCS</span>
+        <span>
+          <span class="b-name">F. C. Sondhi Charitable Trust</span><br />
+          <span class="b-sub">Jalandhar &middot; Since 1978</span>
+        </span>
+      </a>
+      <p>{SITE.description}</p>
+      <p style="margin-top:0.8rem">Reaching out with compassion.</p>
     </div>
 
-    <nav class="footer-nav" aria-label="Footer">
-      <h3>Explore</h3>
+    <nav aria-label="Footer">
+      <h4>Explore</h4>
       <ul>
-        {
-          explore.map((item) => (
-            <li>
-              <a href={url(item.href)}>{item.label}</a>
-            </li>
-          ))
-        }
+        {explore.map((item) => <li><a href={url(item.href)}>{item.label}</a></li>)}
       </ul>
     </nav>
 
-    <div class="footer-contact">
-      <h3>Get in touch</h3>
+    <div>
+      <h4>Reach the Trust</h4>
       <address>
-        <p>
-          {SITE.address.street}<br />
-          {SITE.address.city} {SITE.address.postalCode}<br />
-          {SITE.address.state}, {SITE.address.country}
-        </p>
-        <p>
-          <a href={`mailto:${SITE.email}`}>{SITE.email}</a><br />
-          <a href={`https://wa.me/${SITE.whatsapp}`} rel="noopener" target="_blank">
-            WhatsApp {SITE.phone}
-          </a>
-        </p>
+        <span>{SITE.address.street}<br />{SITE.address.city} {SITE.address.postalCode}<br />{SITE.address.state}, {SITE.address.country}</span>
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+        <a href={`https://wa.me/${SITE.whatsapp}`} rel="noopener" target="_blank">WhatsApp {SITE.phone}</a>
       </address>
     </div>
   </div>
 
-  <div class="footer-bottom">
-    <div class="wrap footer-bottom__inner">
-      <p>&copy; {year} {SITE.name}. All rights reserved.</p>
-      <p>
-        Application forms are available at the Trust office, {SITE.address.street}, {SITE.address.city}.
-      </p>
-    </div>
+  <div class="foot-bar">
+    <span>&copy; {year} {SITE.name}</span>
+    <span>All donations exempted under section <b style="color:var(--lime)">80G</b></span>
   </div>
 </footer>
-
-<style>
-  .site-footer {
-    margin-top: clamp(3rem, 2rem + 4vw, 6rem);
-  }
-
-  /* CTA band */
-  .footer-cta {
-    background:
-      radial-gradient(120% 140% at 85% 10%, var(--green-700) 0%, var(--green-900) 60%, #071d17 100%);
-    color: var(--text-invert);
-    padding-block: clamp(2.5rem, 1.75rem + 3vw, 4rem);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .footer-cta::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(circle at 1px 1px, rgb(255 255 255 / 0.13) 1px, transparent 0);
-    background-size: 22px 22px;
-    opacity: 0.5;
-    pointer-events: none;
-  }
-
-  .footer-cta__inner {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    gap: var(--sp-5);
-    align-items: center;
-  }
-
-  @media (min-width: 900px) {
-    .footer-cta__inner {
-      grid-template-columns: 1.5fr auto;
-      gap: var(--sp-7);
-    }
-  }
-
-  .footer-cta h2 {
-    color: #fff;
-    max-width: 20ch;
-  }
-
-  .footer-cta p {
-    margin-top: var(--sp-3);
-    color: rgb(255 255 255 / 0.76);
-    max-width: 52ch;
-  }
-
-  .footer-cta__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--sp-3);
-  }
-
-  /* Main */
-  .footer-main {
-    display: grid;
-    gap: var(--sp-6);
-    padding-block: clamp(2.5rem, 2rem + 2.5vw, 4rem);
-    background: var(--surface);
-    border-top: 1px solid var(--line);
-  }
-
-  @media (min-width: 760px) {
-    .footer-main {
-      grid-template-columns: 1.6fr 1fr 1fr;
-      gap: var(--sp-7);
-    }
-  }
-
-  .brand__name {
-    display: block;
-    font-family: var(--font-display);
-    font-size: 1.375rem;
-    font-weight: 700;
-    color: var(--green-900);
-    letter-spacing: -0.01em;
-  }
-
-  .brand__sub {
-    display: block;
-    margin-top: 0.15rem;
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold-700);
-  }
-
-  .footer-brand__desc {
-    margin-top: var(--sp-4);
-    font-size: 0.9375rem;
-    color: var(--text-muted);
-    max-width: 42ch;
-  }
-
-  .footer-brand__tag {
-    margin-top: var(--sp-4);
-    font-size: 0.875rem;
-    color: var(--ink-700);
-  }
-
-  .footer-main h3 {
-    font-family: var(--font-body);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: var(--sp-4);
-  }
-
-  .footer-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    gap: var(--sp-2);
-  }
-
-  .footer-nav a,
-  .footer-contact a {
-    font-size: 0.9375rem;
-    color: var(--ink-700);
-    text-decoration: none;
-  }
-
-  .footer-nav a:hover,
-  .footer-contact a:hover {
-    color: var(--green-700);
-    text-decoration: underline;
-  }
-
-  address {
-    font-style: normal;
-    color: var(--ink-700);
-    font-size: 0.9375rem;
-  }
-
-  address p + p {
-    margin-top: var(--sp-3);
-  }
-
-  /* Bottom */
-  .footer-bottom {
-    background: var(--green-900);
-    color: rgb(255 255 255 / 0.6);
-    font-size: 0.8125rem;
-  }
-
-  .footer-bottom__inner {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--sp-2) var(--sp-5);
-    justify-content: space-between;
-    padding-block: var(--sp-4);
-  }
-</style>

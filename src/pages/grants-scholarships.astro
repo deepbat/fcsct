@@ -3,21 +3,6 @@ import { url } from '../lib/urls';
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
 import { SPONSORSHIP_TIERS } from '../data/site';
-
-const notes = [
-  {
-    title: 'Class 9 to M.A. welcome',
-    body: 'We first offered scholarships to all school-going children, but realised the cost of education in the lower classes is nominal. We now entertain applications from Class 9 through M.A.',
-  },
-  {
-    title: 'Every application verified at home',
-    body: 'Each application is verified by a visit to the home of the student, to confirm the facts entered on the fairly comprehensive application form. Our aim is to help all genuine cases who come to us.',
-  },
-  {
-    title: 'Donor money, donor intent',
-    body: 'Many of our scholarships are sponsored by donors. Our policy is that every paisa of donated money is issued for the scholarship, and all administration costs are borne by the Trust.',
-  },
-];
 ---
 
 <Base
@@ -25,253 +10,182 @@ const notes = [
   description="Annual sponsorship amounts for a student's education, from Class 1 to post-graduation, plus vocational and sports scholarships and monthly grants for the elderly and widows. F. C. Sondhi Charitable Trust, Jalandhar."
 >
   <PageHead
-    eyebrow="Our schemes"
-    title="Scholarships & Grants"
+    eyebrow="Scholarships & Grants"
+    title="Education for every genuine case"
     lede="Sponsor a student for a year, two years or longer — or adopt an elderly person, widow or physically challenged beneficiary for a monthly grant."
   />
 
   <!-- ============ SCHOLARSHIPS ============ -->
-  <section class="section">
+  <section class="section-tight">
     <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">Scholarships</p>
-        <h2>Sponsoring a student’s education</h2>
-        <p>
-          The Trust has been giving scholarships for the last 40 years or so. The following
-          annual amounts are sufficient to sponsor a student.
-        </p>
+      <p class="eyebrow rv"><span class="n">01</span> · Scholarships</p>
+      <h2 class="h-sec rv">Sponsoring a <span class="hl">student&rsquo;s education.</span></h2>
+      <div class="a-grid" style="margin-top:1.6rem;grid-template-columns:1fr">
+        <div class="card rv">
+          <div class="fc-bar"><i></i><i></i><i></i><span>sponsorship-rates.txt</span></div>
+          <div class="card-body">
+            <p class="rv">
+              F. C. Sondhi Charitable Trust has been giving scholarships for the last 40 years or
+              so. First we used to offer scholarships to all school-going children, but then
+              realised that the cost of education in lower classes is nominal. We now entertain
+              applications from <strong>Class 9 to M.A.</strong>
+            </p>
+            <p class="rv">
+              Each application is verified by a visit to the home of the student, to confirm the
+              facts entered on the fairly comprehensive application form. Our aim is to help all
+              genuine cases who come to us.
+            </p>
+            <p class="rv">
+              Many of our scholarships are sponsored by donors. We have a policy that
+              <strong>every paisa of donated money will be issued for the scholarship</strong>,
+              and all administration costs will be borne by the Trust.
+            </p>
+            <div class="pills rv">
+              <span class="pill pill--hot">265 scholarships in 2025–26</span>
+              <span class="pill">16 vocational</span>
+              <span class="pill">6 sports</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="table-wrap">
-        <table>
-          <caption>Annual sponsorship amounts</caption>
+      <div class="tbl-wrap rv">
+        <table class="tbl">
+          <caption>The following annual amounts are sufficient to sponsor a student</caption>
           <thead>
             <tr>
               <th scope="col">Class / Course</th>
-              <th scope="col">Annual sponsorship</th>
+              <th scope="col">Annual amount</th>
             </tr>
           </thead>
           <tbody>
             {
               SPONSORSHIP_TIERS.map((t) => (
                 <tr>
-                  <th scope="row">{t.stage}</th>
-                  <td class="amount">
-                    {t.amount} <span class="unit">{t.note}</span>
-                  </td>
+                  <th scope="row" style="font-weight:500">{t.stage}</th>
+                  <td class="amt">{t.amount}</td>
                 </tr>
               ))
             }
-            <tr>
-              <th scope="row">B.A. &amp; M.A. / B.Sc. &amp; M.Sc.</th>
-              <td class="amount">According to financial need — up to 75% of cost of education</td>
-            </tr>
           </tbody>
         </table>
       </div>
-
-      <p class="mt-4 measure">
+      <p class="note rv" style="margin-top:0.9rem">
+        B.A., M.A., B.Sc. and M.Sc.: according to financial need, up to 75% of cost of education.
         You may adopt a child for one year, two years or more.
       </p>
     </div>
   </section>
 
-  <!-- ============ HOW IT WORKS ============ -->
-  <section class="section section--alt section--tight">
+  <!-- ============ SCHOLARSHIP PHOTOS ============ -->
+  <section class="section-tight">
     <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">How it works</p>
-        <h2>Three things worth knowing</h2>
+      <div class="ph-grid ph-grid--3">
+        <figure class="ph-item rv">
+          <img src={url('/images/stage.webp')} loading="lazy" alt="Scholarship recipients on stage" />
+          <figcaption><span>Scholarship recipients on stage</span><span>01</span></figcaption>
+        </figure>
+        <figure class="ph-item rv">
+          <img src={url('/images/ph-019050.webp')} loading="lazy" alt="Scholarship Awards Function photograph" />
+          <figcaption><span>Awards Function</span><span>02</span></figcaption>
+        </figure>
+        <figure class="ph-item rv">
+          <img src={url('/images/ph-dd96e6.webp')} loading="lazy" alt="Scholarship presentation at the Awards Function" />
+          <figcaption><span>Scholarship presentation</span><span>03</span></figcaption>
+        </figure>
+        <figure class="ph-item rv">
+          <img src={url('/images/ph-761660.webp')} loading="lazy" alt="Scholarship recipients at the function" />
+          <figcaption><span>At the function</span><span>04</span></figcaption>
+        </figure>
+        <figure class="ph-item rv">
+          <img src={url('/images/stall.webp')} loading="lazy" alt="Application stall photograph" />
+          <figcaption><span>Application stall</span><span>05</span></figcaption>
+        </figure>
+        <figure class="ph-item rv">
+          <img src={url('/images/ph-0eae3c.webp')} loading="lazy" alt="Application stall photograph from the Scholarships section" />
+          <figcaption><span>Scholarship applications</span><span>06</span></figcaption>
+        </figure>
       </div>
-      <div class="grid grid--3">
-        {
-          notes.map((n, i) => (
-            <div class="card">
-              <span class="step">{String(i + 1).padStart(2, '0')}</span>
-              <h3>{n.title}</h3>
-              <p class="note-body">{n.body}</p>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ NUMBERS ============ -->
-  <section class="section section--brand">
-    <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">Session 2025–26</p>
-        <h2>Scholarships being given</h2>
-        <p>A total of 265 students received scholarships in the academic session 2025–26.</p>
-      </div>
-      <ul class="grid grid--4 numbers">
-        <li class="stat">
-          <span class="stat__value">265</span>
-          <span class="stat__label">Total scholarships</span>
-        </li>
-        <li class="stat">
-          <span class="stat__value">16</span>
-          <span class="stat__label">Vocational scholarships</span>
-        </li>
-        <li class="stat">
-          <span class="stat__value">6</span>
-          <span class="stat__label">Sports scholarships</span>
-        </li>
-        <li class="stat">
-          <span class="stat__value">9</span>
-          <span class="stat__label">Government schools in the vocational programme</span>
-        </li>
-      </ul>
     </div>
   </section>
 
   <!-- ============ GRANTS ============ -->
-  <section class="section">
+  <section class="band">
     <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">Grants</p>
-        <h2>Grants to the needy</h2>
-        <p>
-          There are surprisingly, even in India where the joint family prevails, many elderly
-          ladies — and even a few elderly gentlemen — who have absolutely no income and very
-          little support. Most of them are over the age of 60.
-        </p>
-      </div>
-
-      <div class="grid grid--2">
-        <div class="card grant">
-          <span class="pill">Old age · Disability</span>
-          <h3>Adopting an elderly person</h3>
-          <p class="note-body">
-            Their families have deserted them and they do not have the capacity to work any
-            longer. If you would like to adopt an elderly person, please send your
-            contributions in multiples of:
-          </p>
-          <ul class="ticks">
-            <li><strong>₹10,200 / ₹12,000</strong> — for one year</li>
-            <li><strong>₹20,400 / ₹24,000</strong> — for two years</li>
-            <li><strong>…and so on</strong> — for as many years as you wish</li>
-          </ul>
+      <p class="eyebrow rv"><span class="n">02</span> · Grants to the needy</p>
+      <h2 class="h-sec rv">Support for the <span class="hl">elderly &amp; widows.</span></h2>
+      <div class="a-grid" style="margin-top:1.8rem">
+        <div class="rv">
+          <div class="ph-grid ph-grid--2" style="margin-top:0">
+            <figure class="ph-item">
+              <img src={url('/images/ph-6234c7.webp')} loading="lazy" alt="Beneficiary at her doorstep" style="aspect-ratio:4/3" />
+              <figcaption><span>Grants in aid</span><span>01</span></figcaption>
+            </figure>
+            <figure class="ph-item">
+              <img src={url('/images/ph-b56764.webp')} loading="lazy" alt="Grant delivered at the doorstep" style="aspect-ratio:4/3" />
+              <figcaption><span>Doorstep delivery</span><span>02</span></figcaption>
+            </figure>
+          </div>
         </div>
-
-        <div class="card grant">
-          <span class="pill pill--gold">Widows &amp; widowers</span>
-          <h3>Grants to widows</h3>
-          <p class="note-body">
-            After starting the scholarship scheme, it came to our notice that widows faced many
-            problems. A scheme was started to give grants to widows — elderly widows and other
-            destitute people — at ₹850 or ₹1,000 per month at present.
-          </p>
-          <ul class="ticks">
-            <li>Financial aid of <strong>₹850–₹1,000 per month</strong></li>
-            <li>Delivered <strong>at the doorstep</strong> — beneficiaries are quite aged</li>
-            <li><strong>421</strong> total beneficiaries in FY 2025–26</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="callout mt-6">
-        <span class="callout__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 6 9 17l-5-5"></path>
-          </svg>
-        </span>
         <div>
-          <h3>Dedicate a grant in someone’s name</h3>
-          <p>
-            If you would like to dedicate a scholarship or grant in someone’s name — perhaps a
-            dear departed parent — it can be named after that person, for example
-            <em>Sushila Khanna Scholarship</em> and/or Grant.
+          <p class="rv" style="color:#b9cad6;max-width:56ch">
+            There are surprisingly — even in India, where the joint family prevails — many elderly
+            ladies and even a few elderly gentlemen who have absolutely no income and very little
+            support. Their families have deserted them and they do not have the capacity to work
+            any longer. Most of these people are over the age of 60.
           </p>
+          <p class="rv" style="color:#b9cad6;max-width:56ch;margin-top:1.1rem">
+            After starting the scholarship scheme, it came to our notice that widows faced many
+            problems. A scheme was started to give grants to widows. Our aim is to help elderly
+            widows and other destitute people, and we are giving financial aid of
+            <strong style="color:#fff">Rs. 850/– or Rs. 1,000/– per month</strong> at present.
+            Since the beneficiaries are quite aged, we have devised a scheme so that they receive
+            their grant <strong style="color:#fff">at their doorsteps</strong>.
+          </p>
+          <div class="card pcard rv" style="margin-top:1.8rem;background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.35)">
+            <div class="p-top"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 11c0 5.65-7 10-7 10Z" /></svg></div><span class="p-num" style="color:#9fb6c6">Adopt an elderly person</span></div>
+            <h3 style="color:#fff">One year, two years, or more</h3>
+            <p class="d" style="color:#b9cad6">Send contributions in multiples of:</p>
+            <p class="d" style="color:#e8f3fa;font-weight:600">₹10,200 / ₹12,000 — one year<br />₹20,400 / ₹24,000 — two years<br />…and so on.</p>
+            <div class="p-note" style="border-color:rgba(255,255,255,.2);color:#9fb6c6"><b style="color:var(--lime)">Note</b>Old age, widow/widower and physically challenged beneficiaries are included in the total.</div>
+          </div>
+          <div class="pills rv" style="margin-top:1.4rem">
+            <span class="pill pill--hot">421 beneficiaries in FY 2025–26</span>
+            <span class="pill" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.25);color:#e8f3fa">Delivered at the doorstep</span>
+          </div>
         </div>
       </div>
+      <div class="hero-cta rv" style="margin-top:2rem">
+        <a class="cta" href={url('/how-to-donate/')}>How to donate<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></svg></a>
+        <a class="cta cta--ghost" href={url('/contact/')}>Talk to the Trust</a>
+      </div>
+    </div>
+  </section>
 
-      <div class="cta-row mt-7">
-        <a class="btn btn--primary" href={url('/how-to-donate/')}>How to Donate</a>
-        <a class="btn btn--ghost" href={url('/contact/')}>Talk to the Trust</a>
+  <!-- ============ DEDICATION ============ -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow rv"><span class="n">03</span> · In someone&rsquo;s name</p>
+      <h2 class="h-sec rv">Dedicate a <span class="hl">scholarship or grant.</span></h2>
+      <p class="lede rv" style="margin-top:1.1rem">
+        If you would like to dedicate a scholarship or grant in someone&rsquo;s name — perhaps a
+        dear departed parent — it can be named after that person, for example
+        <em>Sushila Khanna Scholarship</em> and/or Grant.
+      </p>
+      <div class="ph-grid ph-grid--3" style="margin-top:2.2rem">
+        <figure class="ph-item rv">
+          <img src={url('/images/awards-1.webp')} loading="lazy" alt="Awards ceremony photograph" />
+          <figcaption><span>Awards ceremony</span><span>01</span></figcaption>
+        </figure>
+        <figure class="ph-item rv">
+          <img src={url('/images/awards-3.webp')} loading="lazy" alt="Awards ceremony photograph" />
+          <figcaption><span>Awards ceremony</span><span>02</span></figcaption>
+        </figure>
+        <figure class="ph-item rv">
+          <img src={url('/images/vocation.webp')} loading="lazy" alt="Vocational career options" />
+          <figcaption><span>Vocational paths</span><span>03</span></figcaption>
+        </figure>
       </div>
     </div>
   </section>
 </Base>
-
-<style>
-  .unit {
-    font-family: var(--font-body);
-    font-size: 0.8125rem;
-    font-weight: 400;
-    color: var(--text-muted);
-  }
-
-  .step {
-    display: inline-grid;
-    place-items: center;
-    width: 2.25rem;
-    height: 2.25rem;
-    border-radius: var(--r-full);
-    background: var(--green-50);
-    border: 1px solid var(--green-100);
-    color: var(--green-700);
-    font-family: var(--font-display);
-    font-size: 0.9375rem;
-    font-weight: 600;
-  }
-
-  .card h3 {
-    margin-top: var(--sp-4);
-  }
-
-  .note-body {
-    margin-top: var(--sp-3);
-    font-size: 0.9375rem;
-    color: var(--text-muted);
-  }
-
-  .numbers {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    row-gap: var(--sp-5);
-  }
-
-  .section--brand .section-head p {
-    color: rgb(255 255 255 / 0.75);
-  }
-
-  .ticks {
-    list-style: none;
-    padding: 0;
-    margin: var(--sp-5) 0 0;
-    display: grid;
-    gap: var(--sp-3);
-    font-size: 0.9375rem;
-    color: var(--ink-700);
-  }
-
-  .ticks li {
-    display: flex;
-    gap: 0.65rem;
-    align-items: baseline;
-  }
-
-  .ticks li::before {
-    content: '';
-    flex-shrink: 0;
-    width: 6px;
-    height: 6px;
-    margin-top: 0.55rem;
-    border-radius: 50%;
-    background: var(--gold-500);
-  }
-
-  .ticks strong {
-    color: var(--green-800);
-    font-weight: 600;
-  }
-
-  .cta-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--sp-3);
-  }
-</style>

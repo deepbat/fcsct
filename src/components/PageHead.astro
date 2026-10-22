@@ -5,25 +5,18 @@ interface Props {
   title: string;
   lede?: string;
 }
-
 const { eyebrow, title, lede } = Astro.props;
 ---
 
-<section class="page-head">
+<section class="p-head">
   <div class="wrap">
-    <ol class="breadcrumb">
-      <li><a href={url('/')}>Home</a></li>
-      <li aria-hidden="true">/</li>
-      <li aria-current="page">{title}</li>
-    </ol>
-    {eyebrow && <p class="eyebrow mt-4">{eyebrow}</p>}
-    <h1>{title}</h1>
-    {lede && <p class="lede">{lede}</p>}
+    <p class="crumbs">
+      <a href={url('/')}>Home</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{title}</span>
+    </p>
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h1 class="h-giant">{title}</h1>
+    {lede && <p class="lede" style="margin-top:1.1rem">{lede}</p>}
   </div>
 </section>
-
-<style>
-  .eyebrow {
-    color: var(--gold-500);
-  }
-</style>

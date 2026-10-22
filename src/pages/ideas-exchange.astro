@@ -2,183 +2,100 @@
 import { url } from '../lib/urls';
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
-
-const subscriptions = [
-  { region: 'Within India', rows: [{ term: '2 years', price: '₹500' }, { term: '4 years', price: '₹800' }] },
-  { region: 'Outside India', rows: [{ term: '1 year', price: '₹1,000' }, { term: '2 years', price: '₹1,500' }] },
-];
 ---
 
 <Base
   title="Ideas Exchange"
-  description="Ideas Exchange, the newsletter of the F. C. Sondhi Charitable Trust, has been published regularly since 1978 and circulates to about 1000 members across India and abroad. Subscribe from ₹500."
+  description="Ideas Exchange, the newsletter of the F. C. Sondhi Charitable Trust, has been published regularly since 1978 and circulates to about 1,000 members across India and abroad."
 >
   <PageHead
-    eyebrow="Newsletter since 1978"
-    title="Ideas Exchange"
-    lede="A newsletter of spiritual, moral and general-interest articles, condensed into an easily readable form — and a forum for readers to exchange ideas across the world."
+    eyebrow="Ideas Exchange"
+    title="A newsletter since the beginning"
+    lede="A newsletter of spiritual, moral and general-interest articles, condensed into an easily readable form — and a forum for exchanging ideas across the world."
   />
 
-  <section class="section">
+  <!-- ============ THE NEWSLETTER ============ -->
+  <section class="section-tight">
     <div class="wrap">
-      <div class="split">
-        <div class="prose">
-          <p>
-            The Trust also runs a newsletter which has been regularly published since the
-            inception of the Trust. The newsletter, by the name of
-            <strong>“Ideas Exchange”</strong>, contains spiritual, moral and general-interest
-            articles condensed into an easily readable form for our readers.
+      <div class="a-grid" style="margin-top:0">
+        <div class="prose-measure">
+          <h2 class="h-sec rv" style="font-size:clamp(1.6rem,3.4vw,2.4rem)">From the founder&rsquo;s <span class="hl">typing hands.</span></h2>
+          <p class="lede rv" style="margin-top:1.2rem">
+            The Trust also runs a newsletter which has been regularly published since the inception
+            of the Trust. The newsletter, by the name of <strong>&ldquo;Ideas Exchange&rdquo;</strong>,
+            contains spiritual, moral and general-interest articles condensed into an easily
+            readable form for our readers.
           </p>
-          <p>
-            Our founder, Late Sh. F. C. Sondhi, worked hard to start the Ideas Exchange on a
-            regular basis, and in the early days he did all the work of compiling articles which
-            could be of interest to readers. As the name of the magazine indicates, Sh. F. C.
-            Sondhi was keen that this little magazine could become a forum where readers would
-            write in their various different ideas, and that it would become a medium for
-            exchange of ideas between people all over the world.
+          <p class="lede rv" style="margin-top:1.2rem">
+            Our founder, Late Sh. F. C. Sondhi, worked hard to start the Ideas Exchange on a regular
+            basis, and in the early days he did all the work of compiling articles which could be of
+            interest to readers. As the name of the magazine indicates, Sh. F. C. Sondhi was keen
+            that this little magazine could become a forum where readers would write in their
+            various different ideas, and that it would become a medium for exchange of ideas between
+            people all over the world.
           </p>
-          <p>
-            It currently has a circulation of about <strong>1,000 members</strong>, spread all
-            over India and other countries. Mr. F. C. Sondhi’s grand-daughter, Gitanjali, was the
+          <p class="lede rv" style="margin-top:1.2rem">
+            It currently has a circulation of about <strong>1,000 members</strong>, spread all over
+            India and other countries. Mr. F. C. Sondhi&rsquo;s grand-daughter (Gitanjali) was the
             editor for 20 years.
           </p>
         </div>
-
-        <aside class="aside">
-          <div class="quote">
-            <blockquote>
-              A forum where readers write in their various different ideas — a medium for
-              exchange of ideas between people all over the world.
-            </blockquote>
-            <cite>Sh. F. C. Sondhi, Founder</cite>
+        <aside class="card rv">
+          <div class="fc-bar"><i></i><i></i><i></i><span>ideas-exchange.txt</span></div>
+          <div class="mag-photo">
+            <img src={url('/images/magazines.webp')} loading="lazy" alt="Issues of Ideas Exchange" style="width:100%" />
           </div>
-
-          <div class="stat stat--box">
-            <span class="stat__value">1,000</span>
-            <span class="stat__label">Members, spread across India and other countries</span>
+          <div class="card-body" style="text-align:center">
+            <p class="mono" style="color:var(--muted)">Since 1978 &middot; Quarterly</p>
+            <p style="font-weight:800;color:var(--navy);font-size:1.5rem;margin-top:0.3rem;">1,000 members</p>
+            <p class="mono" style="color:var(--muted)">All over India &amp; other countries</p>
           </div>
         </aside>
       </div>
     </div>
   </section>
 
-  <section class="section section--alt">
+  <!-- ============ SUBSCRIPTION ============ -->
+  <section class="band">
     <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">Subscription</p>
-        <h2>Join the readership</h2>
-        <p>
-          Subscribe for one, two or four years. To subscribe, contact the Trust and we will
-          arrange despatch.
-        </p>
-      </div>
-
-      <div class="grid grid--2">
-        {
-          subscriptions.map((s) => (
-            <div class="table-wrap">
-              <table>
-                <caption>{s.region}</caption>
-                <thead>
-                  <tr>
-                    <th scope="col">Term</th>
-                    <th scope="col">Subscription</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {s.rows.map((r) => (
-                    <tr>
-                      <th scope="row">{r.term}</th>
-                      <td class="amount">{r.price}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ))
-        }
-      </div>
-
-      <div class="callout mt-6">
-        <span class="callout__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 21s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 11c0 5.65-7 10-7 10Z"></path>
-          </svg>
-        </span>
-        <div>
-          <h3>Every penny reaches the student or widow</h3>
-          <p>
-            Our Trust accepts donations for helping poor and needy students and destitute
-            widows. Every penny donated reaches the student or widow — all administration costs
-            are borne by the Trust.
-          </p>
+      <p class="eyebrow rv"><span class="n">Subscription rates</span></p>
+      <h2 class="h-sec rv">Join the <span class="hl">readership.</span></h2>
+      <div class="w-grid--2" style="max-width:760px">
+        <div class="card pcard rv" style="background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.35)">
+          <div class="p-top"><div class="ic" style="background:rgba(240,251,41,.15)"><svg viewBox="0 0 24 24" style="stroke:var(--lime)"><path d="M4 20V9l8-5 8 5v11" /><path d="M9 20v-6h6v6M4 20h16" /></svg></div><span class="p-num" style="color:#9fb6c6">Within India</span></div>
+          <h3 style="color:#fff">Two or four years</h3>
+          <p class="d" style="color:#e8f3fa;font-weight:700">Rs. 500/– &nbsp;·&nbsp; 2 years</p>
+          <p class="d" style="color:#e8f3fa;font-weight:700;margin-top:-0.5rem">Rs. 800/– &nbsp;·&nbsp; 4 years</p>
+        </div>
+        <div class="card pcard rv" style="background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.35)">
+          <div class="p-top"><div class="ic" style="background:rgba(240,251,41,.15)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c2.5 2.5 3.5 5.5 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-5.5-3.5-9s1-6.5 3.5-9z" /></svg></div><span class="p-num" style="color:#9fb6c6">Outside India</span></div>
+          <h3 style="color:#fff">One or two years</h3>
+          <p class="d" style="color:#e8f3fa;font-weight:700">Rs. 1,000/– &nbsp;·&nbsp; 1 year</p>
+          <p class="d" style="color:#e8f3fa;font-weight:700;margin-top:-0.5rem">Rs. 1,500/– &nbsp;·&nbsp; 2 years</p>
         </div>
       </div>
-
-      <div class="cta-row mt-6">
-        <a class="btn btn--primary" href={url('/contact/')}>Subscribe or enquire</a>
-        <a class="btn btn--ghost" href={url('/e-magazine/')}>Browse past issues</a>
+      <div class="hero-cta rv" style="margin-top:2rem">
+        <a class="cta" href={url('/e-magazine/')}>Browse the e-magazine archive<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></svg></a>
+        <a class="cta cta--ghost" href={url('/contact/')}>Subscribe or enquire</a>
       </div>
+      <p class="rv" style="margin-top:1.4rem;font-size:.92rem;color:#9fb6c6">
+        The Trust accepts donations for helping poor and needy students and destitute widows. Every
+        penny donated reaches the student or widow — all administration costs are borne by the
+        Trust.
+      </p>
     </div>
   </section>
 </Base>
 
 <style>
-  .split {
-    display: grid;
-    gap: var(--sp-6);
+  .prose-measure {
+    max-width: 62ch;
   }
-
-  @media (min-width: 960px) {
-    .split {
-      grid-template-columns: 1.35fr 1fr;
-      gap: var(--sp-8);
-      align-items: start;
-    }
+  .mag-photo {
+    padding: 0.9rem 0.9rem 0;
   }
-
-  .aside {
-    display: grid;
-    gap: var(--sp-4);
-  }
-
-  .quote {
-    padding: var(--sp-5);
-    border-radius: var(--r-lg);
-    background: var(--green-900);
-    color: rgb(255 255 255 / 0.85);
-  }
-
-  .quote blockquote {
-    margin: 0;
-    font-family: var(--font-display);
-    font-size: 1.125rem;
-    line-height: 1.5;
-    color: #fff;
-  }
-
-  .quote cite {
-    display: block;
-    margin-top: var(--sp-4);
-    font-size: 0.8125rem;
-    font-style: normal;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold-500);
-  }
-
-  .stat--box {
-    padding: var(--sp-5);
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--r-lg);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .cta-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--sp-3);
+  .mag-photo img {
+    border: var(--bd);
+    border-radius: 8px;
   }
 </style>

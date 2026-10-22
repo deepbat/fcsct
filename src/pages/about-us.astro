@@ -1,37 +1,42 @@
 ---
+import { url } from '../lib/urls';
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
 
 const chapters = [
   {
-    kicker: '01 — Childhood',
-    title: 'Orphaned at three, raised by relatives',
+    n: '01',
+    kicker: 'Childhood',
+    title: 'Born in 1906, orphaned at three',
     body: [
-      'Mr. F. C. Sondhi, a great philanthropist and self-made businessman, was born in 1906 in Sialkot — now in Pakistan. Both his parents died when he was three years old and he was left to grow up in the home of some relatives.',
+      'Mr. F. C. Sondhi, a great philanthropist and self made businessman, was born in 1906 in Sialkot — now in Pakistan. Both his parents died when he was three years old, and he was left to grow up in the home of some relatives.',
     ],
   },
   {
-    kicker: '02 — Beliefs',
-    title: 'Hard work, honest study, upliftment',
+    n: '02',
+    kicker: 'Beliefs',
+    title: 'Hard, diligent and honest study',
     body: [
-      'From a very young age he believed in hard, diligent and honest study, and at the same time was deeply committed to the upliftment of the downtrodden. He was an active member of the Arya Samaj movement in those days.',
-      'Through his own hard work and self-education he did well in his academic studies and was called by the then major sports company in United India, M/s Uberoi Limited, to work there. He developed a shining reputation for honesty and was put under the personal supervision of Mr. Uberoi himself.',
+      'From a very young age he believed in hard, diligent and honest study and, at the same time, was deeply committed to the upliftment of the downtrodden. He was an active member of the Arya Samaj movement in those days.',
+      'Through his own hard work and self education he did well in his academic studies, and was called by the then major sports company in United India, M/s Uberoi Limited, to work there. He developed a shining reputation for honesty and was put under the personal supervision of Mr. Uberoi himself.',
     ],
   },
   {
-    kicker: '03 — Career',
-    title: 'England, then a life of returns to India',
+    n: '03',
+    kicker: 'Career',
+    title: 'England — and a life of returns to India',
     body: [
       'In 1936 he was sent to England and eventually settled down there. However, he had a great yearning to visit his motherland and came to India often.',
-      'From 1967 — when his younger son came and settled in Jalandhar — till 1983, when he passed away, he visited India every year for periods of three to six months at a time, and got deeply involved in projects for helping the poor and the needy. He was also here for one full year in 1972–73, as President of the local Rotary Club.',
+      'From 1967 — when his younger son came and settled in Jalandhar — till 1983, when he passed away, he used to visit India every year for periods of three to six months at a time, and got deeply involved in projects for helping the poor and the needy. He was also here for one full year in 1972–1973, as President of the local Rotary Club.',
     ],
   },
   {
-    kicker: '04 — Philosophy',
-    title: 'Equality, and belief in action',
+    n: '04',
+    kicker: 'Philosophy',
+    title: 'Equality — and belief in action',
     body: [
-      'Late Mr. F. C. Sondhi was a spiritually minded philanthropist and self-made businessman. He believed in treating all human beings as equal, irrespective of caste and creed.',
-      'He also believed in a universal religion without dogma. And he was a great believer in action, which was exemplified by his life work. That is why the Trust was started.',
+      'Late Mr. F. C. Sondhi was a spiritually minded philanthropist and self made businessman. He believed in treating all human beings as equal, irrespective of caste and creed. He also believed in a universal religion without dogma.',
+      'He was also a great believer in action, which was exemplified by his life work. That is why the Trust was started.',
     ],
   },
 ];
@@ -43,165 +48,122 @@ const chapters = [
 >
   <PageHead
     eyebrow="About us"
-    title="The founder"
-    lede="A self-made businessman who returned to India for sixteen years running to serve the poor — and left behind a trust still doing the same."
+    title="Our Founder"
+    lede="A great philanthropist and self made businessman, born in 1906 in Sialkot, now in Pakistan."
   />
 
-  <section class="section">
+  <!-- ============ FOUNDER ============ -->
+  <section class="section-tight">
     <div class="wrap">
-      <div class="portrait">
-        <div class="portrait__mark" aria-hidden="true">
-          <span>F.C.S.</span>
-          <small>1906 — 1983</small>
-        </div>
-        <div class="prose">
-          <h2>Mr. F. C. Sondhi</h2>
-          <p class="lede">
-            Our founder. Philanthropist, businessman, and a man who believed that belief
-            without action was worth very little.
-          </p>
+      <div class="a-grid" style="margin-top:0;align-items:start">
+        <aside class="card rv founder-card">
+          <div class="fc-bar"><i></i><i></i><i></i><span>fc-sondhi.txt</span></div>
+          <div class="founder-photo">
+            <img src={url('/images/ph-founder.webp')} width="480" height="468" loading="lazy" alt="Mr. F. C. Sondhi, founder" />
+          </div>
+          <div class="card-body" style="text-align:center">
+            <h2 class="h-item" style="font-size:1.35rem">Mr. F. C. Sondhi</h2>
+            <p class="mono" style="color:var(--muted);margin-top:0.4rem">FC Sondhi · 1906 – 1983 · Founder</p>
+          </div>
+        </aside>
+
+        <div>
+          <div class="tl" style="margin-top:0">
+            {
+              chapters.map((c) => (
+                <div class="rv">
+                  <b>{c.n} · {c.kicker}</b>
+                  <div>
+                    <h3 class="h-item">{c.title}</h3>
+                    {c.body.map((p) => (
+                      <span style="display:block;margin-top:0.55rem">{p}</span>
+                    ))}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
         </div>
       </div>
-
-      <ol class="chapters mt-7">
-        {
-          chapters.map((c) => (
-            <li class="chapter">
-              <p class="chapter__kicker">{c.kicker}</p>
-              <h3 class="chapter__title">{c.title}</h3>
-              <div class="chapter__body">
-                {c.body.map((p) => (
-                  <p>{p}</p>
-                ))}
-              </div>
-            </li>
-          ))
-        }
-      </ol>
     </div>
   </section>
 
-  <section class="section section--alt">
+  <!-- ============ PHILOSOPHY IN PRACTICE ============ -->
+  <section class="band">
     <div class="wrap">
-      <div class="section-head section-head--center">
-        <p class="eyebrow">The Trust today</p>
-        <h2>His philosophy, still in practice</h2>
+      <p class="eyebrow rv"><span class="n">Philosophy</span> · The Trust today</p>
+      <h2 class="h-sec rv">His philosophy, <span class="hl">still in practice.</span></h2>
+      <div class="w-grid" style="grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr))">
+        <div class="card pcard rv donate-today">
+          <div class="p-top"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c2.5 2.5 3.5 5.5 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-5.5-3.5-9s1-6.5 3.5-9z" /></svg></div><span class="p-num">Equal regard</span></div>
+          <h3 style="color:#fff">All human beings are equal</h3>
+          <p class="d" style="color:#b9cad6">Aid is given on need alone — never on caste, creed or connection. Applications are verified by a visit to the applicant&rsquo;s home.</p>
+        </div>
+        <div class="card pcard rv">
+          <div class="p-top"><div class="ic"><svg viewBox="0 0 24 24"><path d="M13 2 4.5 13.5H11L9.5 22 19 9.5h-6.5L13 2z" /></svg></div><span class="p-num">Action over words</span></div>
+          <h3 style="color:#fff">A great believer in action</h3>
+          <p class="d" style="color:#b9cad6">The Trust has been sanctioning scholarships and grants continuously since 2 May 1978 — without a break.</p>
+        </div>
+        <div class="card pcard rv">
+          <div class="p-top"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" /><path d="M9 12l2 2 4-4" /></svg></div><span class="p-num">Donor trust</span></div>
+          <h3 style="color:#fff">Every paisa accounted for</h3>
+          <p class="d" style="color:#b9cad6">Every paisa of donated money is issued for the scholarship or grant it was given for, and all administration costs are borne by the Trust itself.</p>
+        </div>
       </div>
-      <div class="grid grid--3">
-        <div class="card">
-          <h3>Equal regard</h3>
-          <p class="card__body">
-            Aid is given on need alone — never on caste, creed or connection. Applications are
-            verified by a visit to the applicant’s home.
-          </p>
-        </div>
-        <div class="card">
-          <h3>Action over words</h3>
-          <p class="card__body">
-            The Trust has been sanctioning scholarships and grants continuously since 2 May
-            1978, without a break.
-          </p>
-        </div>
-        <div class="card">
-          <h3>Donor trust</h3>
-          <p class="card__body">
-            Every paisa of donated money is issued for the scholarship or grant it was given
-            for. All administration costs are borne by the Trust itself.
-          </p>
-        </div>
+      <div class="hero-cta rv" style="margin-top:2rem">
+        <a class="cta" href={url('/grants-scholarships/')}>See the schemes<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></svg></a>
+        <a class="cta cta--ghost" href={url('/trust-activities-updates/')}>What we&rsquo;re doing now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AWARDS PHOTO ============ -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow rv"><span class="n">Archive</span> · Awards Function</p>
+      <h2 class="h-sec rv">The work, <span class="hl">in pictures.</span></h2>
+      <div class="ph-grid ph-grid--3">
+        <figure class="ph-item rv">
+          <img src={url('/images/awards-2.webp')} loading="lazy" alt="Awards Function photograph from the original homepage" />
+          <figcaption><span>Awards Function</span><span>01</span></figcaption>
+        </figure>
+        <figure class="ph-item rv">
+          <img src={url('/images/stage.webp')} loading="lazy" alt="Scholarship recipients on stage at the Awards Function" />
+          <figcaption><span>On stage</span><span>02</span></figcaption>
+        </figure>
+        <figure class="ph-item rv">
+          <img src={url('/images/collage.webp')} loading="lazy" alt="Photographs from the Trust's Awards Function, 25 March 2018" />
+          <figcaption><span>Awards collage · 25 Mar 2018</span><span>03</span></figcaption>
+        </figure>
       </div>
     </div>
   </section>
 </Base>
 
 <style>
-  .portrait {
-    display: grid;
-    gap: var(--sp-5);
-    align-items: center;
+  .founder-photo {
+    padding: 0.9rem 0.9rem 0;
   }
-
-  @media (min-width: 860px) {
-    .portrait {
-      grid-template-columns: 240px 1fr;
-      gap: var(--sp-8);
-    }
+  .founder-card img {
+    border: var(--bd);
+    border-radius: 8px;
+    width: 100%;
   }
-
-  .portrait__mark {
-    display: grid;
-    place-items: center;
-    gap: 0.5rem;
-    aspect-ratio: 1;
-    border-radius: var(--r-xl);
-    background: radial-gradient(circle at 30% 25%, var(--green-700), var(--green-900));
-    box-shadow: var(--shadow-lg);
+  .band .pcard {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.35);
   }
-
-  .portrait__mark span {
-    font-family: var(--font-display);
-    font-size: clamp(2.25rem, 1.6rem + 3vw, 3.25rem);
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    color: var(--gold-500);
+  html.dark .band .pcard {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.25);
   }
-
-  .portrait__mark small {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    color: rgb(255 255 255 / 0.6);
+  .band .pcard .ic {
+    background: rgba(240, 251, 41, 0.15);
   }
-
-  /* Chapters */
-  .chapters {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    gap: var(--sp-4);
+  .band .pcard .ic svg {
+    stroke: var(--lime);
   }
-
-  @media (min-width: 900px) {
-    .chapters {
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--sp-5);
-    }
-  }
-
-  .chapter {
-    padding: var(--sp-5);
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--r-lg);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .chapter__kicker {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold-700);
-  }
-
-  .chapter__title {
-    margin-top: var(--sp-3);
-  }
-
-  .chapter__body {
-    margin-top: var(--sp-3);
-    font-size: 0.9375rem;
-    color: var(--text-muted);
-  }
-
-  .chapter__body p + p {
-    margin-top: var(--sp-3);
-  }
-
-  .card__body {
-    margin-top: var(--sp-3);
-    font-size: 0.9375rem;
-    color: var(--text-muted);
+  .band .pcard:hover {
+    box-shadow: 11px 11px 0 rgba(0, 0, 0, 0.35);
   }
 </style>

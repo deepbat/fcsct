@@ -1,29 +1,8 @@
 ---
+import { url } from '../lib/urls';
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
 import { SITE } from '../data/site';
-
-const channels = [
-  {
-    label: 'Email',
-    value: SITE.email,
-    href: `mailto:${SITE.email}`,
-    note: 'For applications, reports and magazine enquiries',
-  },
-  {
-    label: 'WhatsApp / SMS',
-    value: SITE.phone,
-    href: `https://wa.me/${SITE.whatsapp}`,
-    note: 'Fastest way to reach the Trust office',
-    external: true,
-  },
-  {
-    label: 'Office',
-    value: `${SITE.address.street}, ${SITE.address.city} ${SITE.address.postalCode}`,
-    href: null,
-    note: `${SITE.address.state}, ${SITE.address.country}`,
-  },
-];
 
 const mapQuery = encodeURIComponent(
   `${SITE.address.street}, ${SITE.address.city} ${SITE.address.postalCode}, ${SITE.address.state}, ${SITE.address.country}`,
@@ -35,37 +14,55 @@ const mapQuery = encodeURIComponent(
   description="Contact the F. C. Sondhi Charitable Trust — 15 Adarsh Nagar, Jalandhar 144008, Punjab. Email fcsondhitrust@gmail.com or WhatsApp 81980-62233."
 >
   <PageHead
-    eyebrow="Reach us"
-    title="Contact Us"
+    eyebrow="Contact us"
+    title="Reach the Trust"
     lede="If you know a student who needs a scholarship, or an elderly person left without support, please bring them to our attention."
   />
 
-  <section class="section">
+  <!-- ============ CHANNELS ============ -->
+  <section class="section-tight">
     <div class="wrap">
-      <div class="channels">
-        {
-          channels.map((c) => (
-            <div class="channel">
-              <p class="channel__label">{c.label}</p>
-              {c.href ? (
-                <a class="channel__value" href={c.href} rel={c.external ? 'noopener' : undefined} target={c.external ? '_blank' : undefined}>
-                  {c.value}
-                </a>
-              ) : (
-                <p class="channel__value channel__value--static">{c.value}</p>
-              )}
-              <p class="channel__note">{c.note}</p>
-            </div>
-          ))
-        }
-      </div>
+      <ul class="socials rv" style="max-width:560px">
+        <li>
+          <a href={`mailto:${SITE.email}`}>
+            <span>Email</span>
+            <svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" /></svg>
+          </a>
+        </li>
+        <li>
+          <a href={`https://wa.me/${SITE.whatsapp}`} rel="noopener" target="_blank">
+            <span>WhatsApp / SMS — {SITE.phone}</span>
+            <svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" /></svg>
+          </a>
+        </li>
+        <li>
+          <a href={`tel:+${SITE.whatsapp}`}>
+            <span>Call the office</span>
+            <svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" /></svg>
+          </a>
+        </li>
+      </ul>
+      <p class="note rv" style="margin-top:1.2rem">
+        Application forms for scholarships and vocational courses are available at the Trust
+        office. Forms are also sent out by post, on request.
+      </p>
     </div>
   </section>
 
-  <section class="section section--alt section--tight">
+  <!-- ============ MAP ============ -->
+  <section class="section-tight">
     <div class="wrap">
-      <div class="map-block">
-        <div class="map">
+      <div class="a-grid" style="margin-top:0;grid-template-columns:1fr">
+        <aside class="card rv">
+          <div class="fc-bar"><i></i><i></i><i></i><span>address.txt</span></div>
+          <div class="card-body" style="font-family:var(--f-mono);font-size:0.8rem;line-height:1.95;color:var(--ink-2)">
+            <span style="color:var(--navy);font-weight:500">name</span>&nbsp;&nbsp;&nbsp; F. C. Sondhi Charitable Trust<br />
+            <span style="color:var(--navy);font-weight:500">street</span>&nbsp;&nbsp;&nbsp; {SITE.address.street}<br />
+            <span style="color:var(--navy);font-weight:500">city</span>&nbsp;&nbsp;&nbsp;&nbsp; {SITE.address.city} {SITE.address.postalCode}<br />
+            <span style="color:var(--navy);font-weight:500">state</span>&nbsp;&nbsp;&nbsp; {SITE.address.state}, {SITE.address.country}
+          </div>
+        </aside>
+        <div class="map rv">
           <iframe
             title="Map showing the F. C. Sondhi Charitable Trust office at 15 Adarsh Nagar, Jalandhar"
             src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
@@ -76,136 +73,11 @@ const mapQuery = encodeURIComponent(
             referrerpolicy="no-referrer-when-downgrade"
             allowfullscreen></iframe>
         </div>
-        <div class="map-block__aside">
-          <h2>F. C. Sondhi Charitable Trust</h2>
-          <address>
-            {SITE.address.street}<br />
-            {SITE.address.city} {SITE.address.postalCode}<br />
-            {SITE.address.state}, {SITE.address.country}
-          </address>
-          <div class="actions mt-5">
-            <a
-              class="btn btn--primary"
-              href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`}
-              rel="noopener"
-              target="_blank"
-            >
-              Open in Google Maps
-            </a>
-            <a class="btn btn--ghost" href={`tel:+${SITE.whatsapp}`}>Call the office</a>
-          </div>
-          <p class="note mt-5">
-            Application forms for scholarships and vocational courses are available at the
-            Trust office.
-          </p>
-        </div>
+      </div>
+      <div class="hero-cta rv" style="margin-top:1.8rem">
+        <a class="cta" href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`} rel="noopener" target="_blank">Open in Google Maps<svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" /></svg></a>
+        <a class="cta cta--ghost" href={url('/how-to-donate/')}>How to Donate</a>
       </div>
     </div>
   </section>
 </Base>
-
-<style>
-  .channels {
-    display: grid;
-    gap: var(--sp-4);
-  }
-
-  @media (min-width: 800px) {
-    .channels {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .channel {
-    padding: var(--sp-5);
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--r-lg);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .channel__label {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold-700);
-  }
-
-  .channel__value {
-    display: block;
-    margin-top: var(--sp-3);
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 600;
-    line-height: 1.3;
-    color: var(--green-800);
-    text-decoration: none;
-    overflow-wrap: anywhere;
-  }
-
-  a.channel__value:hover {
-    color: var(--green-600);
-    text-decoration: underline;
-  }
-
-  .channel__value--static {
-    font-size: 1.0625rem;
-  }
-
-  .channel__note {
-    margin-top: var(--sp-3);
-    font-size: 0.875rem;
-    color: var(--text-muted);
-  }
-
-  /* Map */
-  .map-block {
-    display: grid;
-    gap: var(--sp-5);
-  }
-
-  @media (min-width: 960px) {
-    .map-block {
-      grid-template-columns: 1.4fr 1fr;
-      gap: var(--sp-6);
-      align-items: stretch;
-    }
-  }
-
-  .map {
-    min-height: 340px;
-    border-radius: var(--r-lg);
-    overflow: hidden;
-    border: 1px solid var(--line);
-    box-shadow: var(--shadow-sm);
-    background: var(--surface);
-  }
-
-  .map-block__aside {
-    padding: var(--sp-5);
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--r-lg);
-    box-shadow: var(--shadow-sm);
-  }
-
-  address {
-    margin-top: var(--sp-4);
-    font-style: normal;
-    color: var(--text-muted);
-  }
-
-  .actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--sp-3);
-  }
-
-  .note {
-    font-size: 0.9375rem;
-    color: var(--text-muted);
-    padding-top: var(--sp-4);
-    border-top: 1px solid var(--line-soft);
-  }
-</style>

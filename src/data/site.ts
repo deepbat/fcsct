@@ -129,6 +129,11 @@ export interface Update {
   period: string;
   title: string;
   paragraphs: string[];
+  /** Optional photo illustrating the update */
+  image?: string;
+  imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
 }
 
 /** Quarterly updates, in any order — they are sorted newest first for display. */
@@ -137,6 +142,10 @@ export const UPDATES: Update[] = [
     date: '2026-04-01',
     period: 'April – June 2026',
     title: 'Vocational education programme & grant revision',
+    image: 'vocation.webp',
+    imageAlt: 'Illustration of vocational career options',
+    imageWidth: 420,
+    imageHeight: 236,
     paragraphs: [
       'As part of current year\u2019s initiatives, the Trust has introduced a focused programme to promote vocational education among students completing 10th and 10+2, encouraging a shift from classroom learning to skill-based careers.',
       'A scholarship scheme for vocational courses has been rolled out across 8\u20139 government schools. Students are being encouraged to explore skill-based career options, and application forms are available through the Trust office.',
@@ -147,6 +156,10 @@ export const UPDATES: Update[] = [
     date: '2026-07-01',
     period: 'July – August – September 2026',
     title: 'Scholarships for students from flood-affected families',
+    image: 'sisters.webp',
+    imageAlt: 'Prabhjot Kaur and Veerpal Kaur',
+    imageWidth: 240,
+    imageHeight: 320,
     paragraphs: [
       'As reported in The Tribune on 15th May 2026, sisters Prabhjot Kaur and Veerpal Kaur from Village Rampur Gaura achieved outstanding academic results despite their family suffering severe losses in the August 2025 floods. Prabhjot scored 88.2% in Class 12 and Veerpal secured 88.7% in Class 10.',
       'To encourage them to continue in education, F. C. Sondhi Charitable Trust has awarded scholarships to both girls. While we understand that financial assistance alone cannot solve all the challenges faced by the family, we hope this support provides some encouragement and relief. Subject to satisfactory progress, these scholarships will continue each year for as long as they remain in education.',
@@ -156,6 +169,10 @@ export const UPDATES: Update[] = [
     date: '2026-10-01',
     period: 'October – November – December 2026',
     title: 'Our commitment \u2014 financial and otherwise',
+    image: 'activity.webp',
+    imageAlt: 'Photo from Charitable Trust Function held in March 2025',
+    imageWidth: 460,
+    imageHeight: 259,
     paragraphs: [
       'During the current financial year, the Trust has planned an estimated expenditure of \u20b970 lakh towards grants, scholarships and other charitable initiatives, with an aim to benefit more than 850 deserving beneficiaries.',
       'Up to August 2026, an amount of \u20b936 lakh has already been disbursed, including \u20b924 lakh towards grants and financial assistance, and \u20b912 lakh towards scholarships for deserving students.',

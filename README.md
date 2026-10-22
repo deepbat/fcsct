@@ -6,16 +6,14 @@ Static site built with [Astro](https://astro.build). Deployed to GitHub Pages at
 **<https://deepbat.github.io/fcsct/>** via GitHub Actions — push to `main` and the site
 redeploys automatically.
 
-## Why it was rebuilt
+## Design
 
-The original site ran on Wix, which meant:
-
-- A large JavaScript payload on every page load.
-- Content spread across a proprietary editor, awkward to update.
-- No meaningful semantic structure, sitemap, or structured data.
-
-This version is plain HTML and CSS with a tiny amount of JavaScript for the mobile menu,
-so pages render instantly and are readable by search engines and screen readers.
+Multi-page layout (one route per page, no single-page scrolling) with a neo-brutalist
+design language: navy `#052B42` + lime `#F0FB29`, Inter for body text, JetBrains Mono for
+labels/metadata, hard offset shadows, bordered cards, a sticky pill nav, a marquee band,
+and a light/dark theme toggle (`fcsct-theme` in localStorage, defaults to system).
+Photographs and the logo are served from `public/images/` (extracted from the Trust's
+one-page site copy).
 
 ## Commands
 

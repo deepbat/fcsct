@@ -3,620 +3,243 @@ import { url } from '../lib/urls';
 import Base from '../layouts/Base.astro';
 import { SITE, UPDATES_NEWEST_FIRST } from '../data/site';
 
-const stats = [
-  { value: '1978', label: 'Founded on 2 May — serving Jalandhar for over four decades' },
-  { value: '265', label: 'Students on scholarships in the 2025–26 academic session' },
-  { value: '421', label: 'Grant beneficiaries in financial year 2025–26' },
-  { value: '850+', label: 'Deserving people targeted for support this financial year' },
-];
-
-const pillars = [
-  {
-    href: '/grants-scholarships/',
-    kicker: 'Scholarships',
-    title: 'Sponsoring a student’s education',
-    body: 'From Class 1 through post-graduation, plus dedicated vocational and sports scholarships. Applications from Class 9 to M.A. are accepted, and every one is verified by a visit to the student’s home.',
-  },
-  {
-    href: '/grants-scholarships/',
-    kicker: 'Grants',
-    title: 'Monthly support for the elderly & widows',
-    body: '₹850 per month — ₹1,000 for those with special needs — delivered at the doorstep of beneficiaries who are too old to travel for it.',
-  },
-  {
-    href: '/how-to-donate/',
-    kicker: 'Give',
-    title: 'Dedicate a gift in a loved one’s name',
-    body: 'Sponsor a student or adopt an elderly person for one year, two years or longer. Every donation is exempt under Section 80G.',
-  },
-];
-
 const latest = UPDATES_NEWEST_FIRST[0]!;
 ---
 
 <Base title={SITE.name} description={SITE.description}>
   <!-- ============ HERO ============ -->
-  <section class="hero">
-    <div class="wrap hero__inner">
-      <div class="hero__copy">
-        <p class="eyebrow hero__eyebrow">Est. {SITE.founded} &middot; Jalandhar, Punjab</p>
-        <h1 class="hero__title">
-          Education and dignity,<br />
-          <em>funded by people who care.</em>
-        </h1>
-        <p class="lede hero__lede">
-          Since 1978 the F. C. Sondhi Charitable Trust has sponsored students, adopted the
-          elderly and supported widows across Punjab — with every donated rupee going
-          directly to the person it was meant for.
+  <header class="hero" id="top">
+    <div class="h-sky" aria-hidden="true">
+      <div class="h-stars"></div>
+      <div class="h-cl h-c1"><i style="left:6%;top:12%;width:17vw;height:10svh"></i><i style="left:52%;top:22%;width:23vw;height:12svh"></i></div>
+      <div class="h-cl h-c2"><i style="left:20%;top:34%;width:27vw;height:14svh"></i><i style="left:70%;top:44%;width:19vw;height:10svh"></i></div>
+    </div>
+    <div class="h-grid" aria-hidden="true"></div>
+    <div class="h-top">
+      <span><i class="dot"></i>Serving Jalandhar since <b>2 May 1978</b></span>
+      <span>15 Adarsh Nagar &middot; <b>Jalandhar, Punjab</b></span>
+    </div>
+    <div class="h-lock">
+      <h1 class="rv">
+        <span class="h-line">Helping the needy</span>
+        <span class="h-photo"><img src={url('/images/ph-founder.webp')} width="400" height="390" decoding="async" alt="Mr. F. C. Sondhi, founder of the Trust" /></span>
+        <span class="h-line"><span class="hl">learn, live &amp; hope.</span></span>
+      </h1>
+      <p class="h-lead rv">Every paisa donated <b>reaches the beneficiary.</b></p>
+    </div>
+    <div class="wrap hero-grid">
+      <div>
+        <p class="lede rv">
+          F. C. Sondhi Charitable Trust sanctions scholarships and grants for students and for
+          elderly and widowed people of Jalandhar and beyond. Every paisa donated goes to the
+          beneficiary — the Trust bears all administration costs.
         </p>
-        <div class="hero__actions">
-          <a class="btn btn--accent" href={url('/how-to-donate/')}>How to Donate</a>
-          <a class="btn btn--outline-invert" href={url('/grants-scholarships/')}>Scholarships &amp; Grants</a>
+        <div class="hero-cta rv">
+          <a class="cta cta--lg" href={url('/how-to-donate/')}>Donate or sponsor a student
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+          </a>
+          <a class="cta cta--lg cta--ghost" href={url('/about-us/')}>Our story</a>
         </div>
-        <ul class="hero__proof">
-          <li>
-            <strong>80G</strong>
-            <span>Donation exempt</span>
-          </li>
-          <li>
-            <strong>100%</strong>
-            <span>Admin costs borne by the Trust</span>
-          </li>
-          <li>
-            <strong>Home visits</strong>
-            <span>Every application verified</span>
-          </li>
+        <ul class="checks rv">
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" /></svg>Since 1978</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" /></svg>80G tax exempt</li>
+          <li><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" /></svg>Home-verified applications</li>
         </ul>
       </div>
 
-      <aside class="hero__panel" aria-label="Latest trust update">
-        <div class="panel__head">
-          <span class="panel__badge">Latest Update</span>
-          <span class="panel__period">{latest.period}</span>
+      <aside class="panel rv" role="status" aria-label="The Trust at a glance">
+        <div class="panel-head"><b><svg width="13" height="13" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3" /></svg>The Trust / At a glance</b><span class="stat">FY 2025–26</span></div>
+        <div class="p-step">
+          <div class="p-ic"><svg viewBox="0 0 24 24"><path d="M8 6 3 12l5 6M16 6l5 6-5 6M13 4l-2 16" /></svg></div>
+          <div><div class="p-lbl">Founded</div><div class="p-val">2 May 1978 <b>· Jalandhar</b></div><div class="p-sub">Aid in education &amp; vocational training</div></div>
         </div>
-        <h2 class="panel__title">{latest.title}</h2>
-        <p class="panel__text">{latest.paragraphs[0]}</p>
-        <dl class="panel__stats">
-          <div>
-            <dt>Budget</dt>
-            <dd>₹70 lakh</dd>
-          </div>
-          <div>
-            <dt>Disbursed</dt>
-            <dd>₹36 lakh</dd>
-          </div>
-          <div>
-            <dt>Committed</dt>
-            <dd>₹34 lakh</dd>
-          </div>
-        </dl>
-        <a class="panel__link" href={url('/trust-activities-updates/')}>
-          Read all updates
-          <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M4 10h12M11 5l5 5-5 5"></path>
-          </svg>
-        </a>
+        <div class="p-step">
+          <div class="p-ic"><svg viewBox="0 0 24 24"><path d="M4 20V9l8-5 8 5v11" /><path d="M9 20v-6h6v6M4 20h16" /></svg></div>
+          <div><div class="p-lbl">Scholarships</div><div class="p-val">265 students on scholarships</div><div class="p-sub">Class 9 through M.A. · plus vocational &amp; sports</div></div>
+        </div>
+        <div class="p-step hot">
+          <div class="p-ic"><svg viewBox="0 0 24 24"><path d="M13 2 4.5 13.5H11L9.5 22 19 9.5h-6.5L13 2z" /></svg></div>
+          <div><div class="p-lbl">Grants in aid</div><div class="p-val">421 beneficiaries</div><div class="p-sub">Delivered at the doorstep, monthly</div></div>
+        </div>
+        <div class="p-step">
+          <div class="p-ic"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" /><path d="M9 12l2 2 4-4" /></svg></div>
+          <div><div class="p-lbl">Tax status</div><div class="p-val">80G exempt</div><div class="p-sub">Admin costs borne by the Trust</div></div>
+        </div>
       </aside>
     </div>
-  </section>
+  </header>
 
-  <!-- ============ IMPACT ============ -->
-  <section class="section section--tight">
-    <div class="wrap">
-      <ul class="grid grid--4 impact">
-        {
-          stats.map((s) => (
-            <li class="stat">
-              <span class="stat__value">{s.value}</span>
-              <span class="stat__label">{s.label}</span>
-            </li>
-          ))
-        }
-      </ul>
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="mq-track">
+      <span><i></i>Scholarships<i></i>Grants in aid<i></i>Vocational<i></i>Sports<i></i>80G exempt<i></i>Home-verified<i></i>Ideas Exchange<i></i>Annual reports</span>
+      <span><i></i>Scholarships<i></i>Grants in aid<i></i>Vocational<i></i>Sports<i></i>80G exempt<i></i>Home-verified<i></i>Ideas Exchange<i></i>Annual reports</span>
     </div>
-  </section>
+  </div>
 
   <!-- ============ MISSION ============ -->
-  <section class="section section--alt">
-    <div class="wrap mission">
-      <div>
-        <p class="eyebrow">Mission &amp; Vision</p>
-        <h2 class="mt-4">Help the needy in education and vocational training.</h2>
+  <section class="about" id="about">
+    <div class="wrap">
+      <p class="eyebrow rv"><span class="n">01</span> · Mission &amp; Vision</p>
+      <h2 class="h-sec rv">Aid in education <span class="hl">&amp; vocational training.</span></h2>
+      <div class="a-grid">
+        <aside class="card rv">
+          <div class="fc-bar"><i></i><i></i><i></i><span>about-the-trust.txt</span></div>
+          <div class="card-body" style="font-family:var(--f-mono);font-size:0.78rem;line-height:1.9;color:var(--ink-2)">
+            <span class="mono" style="color:var(--navy)">name</span>&nbsp;&nbsp;&nbsp;&nbsp; F. C. Sondhi Charitable Trust<br />
+            <span class="mono" style="color:var(--navy)">founded</span>&nbsp;&nbsp;&nbsp; 2 May 1978, Jalandhar<br />
+            <span class="mono" style="color:var(--navy)">gives</span>&nbsp;&nbsp;&nbsp;&nbsp; Scholarships &amp; grants to the needy<br />
+            <span class="mono" style="color:var(--navy)">how</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Studies each application, then sanctions aid<br />
+            <span class="mono" style="color:var(--navy)">status</span>&nbsp;&nbsp;&nbsp; Every paisa reaches the beneficiary
+          </div>
+        </aside>
+        <div class="tk-cols">
+          <div class="card tk rv">
+            <div class="ic"><svg viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z" /><path d="M6 12v5c3 3 9 3 12 0v-5" /></svg></div>
+            <h3>Mission</h3>
+            <ul><li>Help the needy — especially in education</li><li>Scholarships, Class 9 to M.A.</li><li>Vocational training grants</li></ul>
+          </div>
+          <div class="card tk rv">
+            <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 20V9l8-5 8 5v11" /><path d="M9 20v-6h6v6M4 20h16" /></svg></div>
+            <h3>Grants</h3>
+            <ul><li>₹850–₹1,000 a month</li><li>Elderly, widows, physically challenged</li><li>Delivered at their doorstep</li></ul>
+          </div>
+          <div class="card tk rv">
+            <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 11c0 5.65-7 10-7 10Z" /></svg></div>
+            <h3>How it works</h3>
+            <ul><li>Apply through the Trust office</li><li>Verified by a home visit</li><li>All genuine cases helped</li></ul>
+          </div>
+        </div>
       </div>
-      <div class="mission__body prose">
-        <p>
-          The F. C. Sondhi Charitable Trust came into existence on <strong>2 May 1978</strong>.
-          Its major aims and objectives are to provide help to the needy — particularly in the
-          fields of <strong>education and vocational training</strong>.
-        </p>
-        <p>
-          The Trust does this by studying applications from institutions and individuals, and
-          sanctioning scholarships and grants in conformity with those ideals.
-        </p>
-        <p>
-          We welcome genuine cases. If you know a student who needs help, or an elderly person
-          left without support, please bring them to our attention.
-        </p>
-        <a class="btn btn--ghost mt-5" href={url('/contact/')}>Get in touch</a>
+      <p class="note rv" style="margin-top:1.4rem">
+        The Trust does this by studying applications from various institutions and individuals and
+        sanctioning scholarships and grants in conformity with its ideals.
+        <a href={url('/about-us/')} style="font-weight:700;color:var(--navy)">Read the founder&rsquo;s story &rarr;</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ STATS ============ -->
+  <div class="stats">
+    <div class="wrap row">
+      <div><b>1978</b><span>Founded in Jalandhar</span></div>
+      <div><b>265</b><span>Scholarships, session 2025–26</span></div>
+      <div><b>421</b><span>Grant beneficiaries, FY 2025–26</span></div>
+      <div><b>80G</b><span>All donations tax exempt</span></div>
+    </div>
+  </div>
+
+  <!-- ============ THREE WAYS ============ -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow rv"><span class="n">02</span> · Get involved</p>
+      <h2 class="h-sec rv">Three ways to <span class="hl">make a difference.</span></h2>
+      <div class="w-grid">
+        <a class="card pcard rv" href={url('/grants-scholarships/')} style="text-decoration:none">
+          <div class="p-top"><div class="ic"><svg viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z" /><path d="M6 12v5c3 3 9 3 12 0v-5" /></svg></div><span class="p-num">01</span></div>
+          <h3>Scholarships</h3>
+          <p class="p-tags">Class 9 → M.A. · Vocational · Sports</p>
+          <p class="d">From Class 9 through M.A. Every application is verified by a visit to the student&rsquo;s home. Sponsor a student from ₹1,500 a year.</p>
+          <div class="p-link"><span>See scholarships &rarr;</span></div>
+        </a>
+        <a class="card pcard rv" href={url('/grants-scholarships/')} style="text-decoration:none">
+          <div class="p-top"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 20V9l8-5 8 5v11" /><path d="M9 20v-6h6v6M4 20h16" /></svg></div><span class="p-num">02</span></div>
+          <h3>Grants</h3>
+          <p class="p-tags">Elderly &middot; Widows &middot; Physically challenged</p>
+          <p class="d">₹850 a month, or ₹1,000 for special needs, for elderly and widowed people — delivered at the doorstep.</p>
+          <div class="p-link"><span>See grants &rarr;</span></div>
+        </a>
+        <a class="card pcard rv" href={url('/how-to-donate/')} style="text-decoration:none">
+          <div class="p-top"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 11c0 5.65-7 10-7 10Z" /></svg></div><span class="p-num">03</span></div>
+          <h3>Give in someone&rsquo;s name</h3>
+          <p class="p-tags">In memory &middot; In honour</p>
+          <p class="d">Dedicate a scholarship or grant in the name of a loved one. All donations are exempt under Section 80G.</p>
+          <div class="p-link"><span>How to donate &rarr;</span></div>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- ============ PILLARS ============ -->
-  <section class="section">
+  <!-- ============ LATEST UPDATE ============ -->
+  <section class="band">
     <div class="wrap">
-      <div class="section-head section-head--center">
-        <p class="eyebrow">What we do</p>
-        <h2>Three ways to make a difference</h2>
-        <p>
-          Whether you sponsor one student for a year or adopt an elderly person for two, the
-          process is simple and the impact is direct.
-        </p>
+      <p class="eyebrow rv"><span class="n">03</span> · Trust activities &amp; updates</p>
+      <h2 class="h-sec rv">What we are <span class="hl">doing now.</span></h2>
+      <div class="upd">
+        <article class="rv" style="border-color:rgba(240,251,41,.35)">
+          <time>{latest.period}</time>
+          <div>
+            <h3 style="color:#fff">{latest.title}</h3>
+            {latest.paragraphs.map((p) => <p>{p}</p>)}
+            <img class="rv" src={url('/images/activity.webp')} width="460" height="259" loading="lazy" alt="Photo from Charitable Trust Function held in March 2025" />
+            <p style="font-size:.8rem;color:#9fb6c6;font-family:var(--f-mono)">Photo from Charitable Trust Function held in March 2025</p>
+          </div>
+        </article>
       </div>
+      <div class="p-link rv" style="margin-top:1.6rem">
+        <a href={url('/trust-activities-updates/')} style="color:var(--lime);border-bottom-color:var(--lime)">All quarterly updates
+          <svg viewBox="0 0 24 24" style="stroke:var(--lime)"><path d="M7 17 17 7M9 7h8v8" /></svg>
+        </a>
+      </div>
+    </div>
+  </section>
 
-      <div class="grid grid--3">
-        {
-          pillars.map((p) => (
-            <a class="card pillar" href={url(p.href)}>
-              <span class="pill">{p.kicker}</span>
-              <h3>{p.title}</h3>
-              <p>{p.body}</p>
-              <span class="pillar__more">
-                Learn more
-                <svg viewBox="0 0 20 20" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M4 10h12M11 5l5 5-5 5" />
-                </svg>
-              </span>
+  <!-- ============ CONTACT TEASER ============ -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow rv"><span class="n">04</span> · Contact</p>
+      <h2 class="h-sec rv">Reach the <span class="hl">Trust.</span></h2>
+      <div class="c-grid">
+        <div>
+          <p class="lede rv">
+            If you know a student who needs a scholarship, or an elderly person left without
+            support, please bring them to our attention.
+          </p>
+          <div class="hero-cta rv" style="margin-top:1.4rem">
+            <a class="cta" href={url('/contact/')}>Contact &amp; office hours
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
             </a>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ SCHOLARSHIP SNAPSHOT ============ -->
-  <section class="section section--alt">
-    <div class="wrap">
-      <div class="split">
-        <div class="split__copy">
-          <p class="eyebrow">Annual sponsorship</p>
-          <h2 class="mt-4">What it costs to sponsor a student for one year</h2>
-          <p class="mt-4">
-            We now entertain applications from Class 9 to M.A. Earlier, when the cost of
-            education in the lower classes was nominal, scholarships were offered to all
-            school-going children.
-          </p>
-          <p class="mt-4">
-            You may adopt a child for one year, two years or more. Many of our scholarships are
-            donor-sponsored — every rupee of donated money is issued for the scholarship itself,
-            and the Trust bears all administration costs.
-          </p>
-          <div class="split__actions mt-6">
-            <a class="btn btn--primary" href={url('/grants-scholarships/')}>Full scheme details</a>
-            <a class="btn btn--ghost" href={url('/how-to-donate/')}>Make a payment</a>
+            <a class="cta cta--ghost" href={url('/e-magazine/')}>Ideas Exchange archive</a>
           </div>
         </div>
-
-        <div class="split__aside">
-          <div class="tally">
-            <p class="tally__label">Scholarships, session 2025–26</p>
-            <p class="tally__value">265</p>
-            <ul class="tally__break">
-              <li><span>Total scholarships</span><strong>265</strong></li>
-              <li><span>Vocational</span><strong>16</strong></li>
-              <li><span>Sports</span><strong>6</strong></li>
-            </ul>
-          </div>
-          <div class="tally tally--gold">
-            <p class="tally__label">Grant beneficiaries, FY 2025–26</p>
-            <p class="tally__value">421</p>
-            <p class="tally__note">
-              Old age, widow / widower and physically challenged beneficiaries.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ FOUNDER ============ -->
-  <section class="section">
-    <div class="wrap founder">
-      <figure class="founder__mark" aria-hidden="true">
-        <span>F.C.S.</span>
-      </figure>
-      <div class="prose">
-        <p class="eyebrow">Our founder</p>
-        <h2 class="mt-4">Mr. F. C. Sondhi (1906 – 1983)</h2>
-        <p>
-          A self-made businessman from Sialkot who lost both parents at three, was mentored by
-          Mr. Uberoi of M/s Uberoi Limited, settled in England in 1936, and returned to India
-          every year from 1967 to 1983 to work for the poor and needy — including a full year in
-          1972–73 as President of the local Rotary Club.
-        </p>
-        <p>
-          He believed in treating all human beings as equal, irrespective of caste and creed, and
-          in a universal religion without dogma. He was also a great believer in action — which
-          is exactly why the Trust exists.
-        </p>
-        <a class="btn btn--ghost mt-5" href={url('/about-us/')}>Read his story</a>
+        <ul class="socials rv">
+          <li>
+            <a href={`mailto:${SITE.email}`}>
+              <span>Email</span><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" /></svg>
+            </a>
+          </li>
+          <li>
+            <a href={`https://wa.me/${SITE.whatsapp}`} rel="noopener" target="_blank">
+              <span>WhatsApp / SMS</span><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" /></svg>
+            </a>
+          </li>
+          <li>
+            <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${SITE.address.street}, ${SITE.address.city}`)}`} rel="noopener" target="_blank">
+              <span>{SITE.address.street}, {SITE.address.city}</span><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" /></svg>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
 </Base>
 
 <style>
-  /* ---------- Hero ---------- */
-  .hero {
-    position: relative;
-    overflow: hidden;
-    background:
-      radial-gradient(115% 125% at 10% 0%, var(--green-800) 0%, var(--green-900) 52%, #061a15 100%);
-    color: var(--text-invert);
-    padding-block: clamp(3rem, 2rem + 5vw, 6.5rem);
+  .about .card-body .k {
+    color: var(--navy);
+    font-weight: 500;
   }
-
-  .hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(circle at 1px 1px, rgb(255 255 255 / 0.13) 1px, transparent 0);
-    background-size: 22px 22px;
-    opacity: 0.55;
-    pointer-events: none;
+  .band .upd article {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.18);
   }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    width: 620px;
-    height: 620px;
-    right: -180px;
-    top: -220px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgb(212 160 23 / 0.22) 0%, transparent 68%);
-    pointer-events: none;
+  .band .upd article p {
+    color: #b9cad6;
   }
-
-  .hero__inner {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    gap: clamp(2.5rem, 1.5rem + 4vw, 4rem);
-    align-items: start;
+  .band .upd article time {
+    color: var(--lime);
   }
-
-  @media (min-width: 980px) {
-    .hero__inner {
-      grid-template-columns: 1.35fr 1fr;
-      gap: var(--sp-8);
-    }
-  }
-
-  .hero__eyebrow {
-    color: var(--gold-500);
-  }
-
-  .hero__title {
-    margin-top: var(--sp-4);
-    color: #fff;
-    letter-spacing: -0.025em;
-  }
-
-  .hero__title em {
-    font-style: italic;
-    color: var(--gold-500);
-  }
-
-  .hero__lede {
-    margin-top: var(--sp-5);
-    max-width: 56ch;
-    color: rgb(255 255 255 / 0.8);
-  }
-
-  .hero__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--sp-3);
-    margin-top: var(--sp-6);
-  }
-
-  .hero__proof {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: var(--sp-4);
-    list-style: none;
-    padding: var(--sp-5) 0 0;
-    margin: var(--sp-6) 0 0;
-    border-top: 1px solid rgb(255 255 255 / 0.14);
-  }
-
-  .hero__proof strong {
-    display: block;
-    font-family: var(--font-display);
-    font-size: 1.375rem;
-    font-weight: 600;
-    color: #fff;
-    letter-spacing: -0.01em;
-  }
-
-  .hero__proof span {
-    display: block;
-    margin-top: 0.15rem;
-    font-size: 0.8125rem;
-    color: rgb(255 255 255 / 0.65);
-  }
-
-  /* Hero panel */
-  .hero__panel {
-    padding: var(--sp-5);
-    border-radius: var(--r-xl);
-    background: rgb(255 255 255 / 0.055);
-    border: 1px solid rgb(255 255 255 / 0.14);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-
-  .panel__head {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--sp-3);
-    margin-bottom: var(--sp-4);
-  }
-
-  .panel__badge {
-    padding: 0.25rem 0.7rem;
-    border-radius: var(--r-full);
-    background: var(--gold-500);
-    color: var(--green-900);
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  .panel__period {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgb(255 255 255 / 0.6);
-  }
-
-  .panel__title {
-    color: #fff;
-    font-size: 1.375rem;
-  }
-
-  .panel__text {
-    margin-top: var(--sp-3);
-    font-size: 0.9375rem;
-    color: rgb(255 255 255 / 0.74);
-  }
-
-  .panel__stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--sp-3);
-    margin-top: var(--sp-5);
-    padding-top: var(--sp-5);
-    border-top: 1px solid rgb(255 255 255 / 0.14);
-  }
-
-  .panel__stats dt {
-    font-size: 0.6875rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgb(255 255 255 / 0.55);
-  }
-
-  .panel__stats dd {
-    margin: 0.25rem 0 0;
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #fff;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .panel__link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    margin-top: var(--sp-5);
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--gold-500);
-    text-decoration: none;
-  }
-
-  .panel__link:hover {
-    color: #eecb63;
-  }
-
-  .panel__link svg {
-    transition: transform 0.18s ease;
-  }
-
-  .panel__link:hover svg {
-    transform: translateX(3px);
-  }
-
-  /* ---------- Impact ---------- */
-  .impact {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    row-gap: var(--sp-5);
-  }
-
-  /* ---------- Mission ---------- */
-  .mission {
-    display: grid;
-    gap: var(--sp-6);
-  }
-
-  @media (min-width: 900px) {
-    .mission {
-      grid-template-columns: 1fr 1.25fr;
-      gap: var(--sp-8);
-    }
-  }
-
-  /* ---------- Pillars ---------- */
-  .pillar h3 {
-    margin-top: var(--sp-4);
-  }
-
-  .pillar p {
-    margin-top: var(--sp-3);
-    font-size: 0.9375rem;
-    color: var(--text-muted);
-  }
-
-  .pillar__more {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    margin-top: var(--sp-5);
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--green-600);
-  }
-
-  .pillar:hover .pillar__more svg {
-    transform: translateX(3px);
-  }
-
-  .pillar__more svg {
-    transition: transform 0.18s ease;
-  }
-
-  /* ---------- Split ---------- */
-  .split {
-    display: grid;
-    gap: var(--sp-6);
-  }
-
-  @media (min-width: 960px) {
-    .split {
-      grid-template-columns: 1.25fr 1fr;
-      gap: var(--sp-8);
-      align-items: start;
-    }
-  }
-
-  .split__copy p {
-    color: var(--text-muted);
-  }
-
-  .split__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--sp-3);
-  }
-
-  .split__aside {
-    display: grid;
-    gap: var(--sp-4);
-  }
-
-  .tally {
-    padding: var(--sp-5);
-    border-radius: var(--r-lg);
-    background: var(--surface);
-    border: 1px solid var(--line);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .tally--gold {
-    background: var(--gold-50);
-    border-color: var(--gold-200);
-  }
-
-  .tally__label {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-
-  .tally__value {
-    margin-top: var(--sp-2);
-    font-family: var(--font-display);
-    font-size: clamp(2.75rem, 2rem + 3vw, 3.75rem);
-    font-weight: 600;
-    line-height: 1;
-    letter-spacing: -0.03em;
-    color: var(--green-700);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .tally--gold .tally__value {
-    color: var(--gold-700);
-  }
-
-  .tally__break {
-    list-style: none;
-    padding: var(--sp-4) 0 0;
-    margin: var(--sp-4) 0 0;
-    border-top: 1px solid var(--line);
-    display: grid;
-    gap: var(--sp-2);
-  }
-
-  .tally__break li {
-    display: flex;
-    justify-content: space-between;
-    gap: var(--sp-4);
-    font-size: 0.9375rem;
-    color: var(--ink-700);
-  }
-
-  .tally__break strong {
-    font-variant-numeric: tabular-nums;
-    color: var(--green-800);
-  }
-
-  .tally__note {
-    margin-top: var(--sp-3);
-    font-size: 0.875rem;
-    color: var(--ink-700);
-  }
-
-  /* ---------- Founder ---------- */
-  .founder {
-    display: grid;
-    gap: var(--sp-5);
-    align-items: center;
-  }
-
-  @media (min-width: 860px) {
-    .founder {
-      grid-template-columns: 240px 1fr;
-      gap: var(--sp-8);
-    }
-  }
-
-  .founder__mark {
-    display: grid;
-    place-items: center;
-    aspect-ratio: 1;
-    margin: 0;
-    border-radius: var(--r-xl);
-    background:
-      radial-gradient(circle at 30% 25%, var(--green-700), var(--green-900));
-    box-shadow: var(--shadow-lg);
-  }
-
-  .founder__mark span {
-    font-family: var(--font-display);
-    font-size: clamp(2.25rem, 1.6rem + 3vw, 3.25rem);
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    color: var(--gold-500);
+  .band .upd article img {
+    border-color: rgba(240, 251, 41, 0.35);
   }
 </style>
